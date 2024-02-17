@@ -7,14 +7,14 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }>) {
   return (
-    <div className="min-h-screen grid md:grid-cols-[260px_1fr]">
-      <aside className="h-full p-4">
+    <div className="min-h-screen grid md:grid-cols-[240px_1fr] gap-4 p-4">
+      <aside className="h-full">
         <DashboardNav 
           items={dashboardConfig.nav} 
-          className="h-full shadow-lg"
+          className="h-full"
         />
       </aside>
-      <main>
+      <main className="">
         {children}
       </main>
     </div>

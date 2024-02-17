@@ -13,6 +13,8 @@ import {
     X,
     LogOut,
     PanelsTopLeft,
+    Heart,
+    MessageCircle,
     type LucideIcon,
     FileStack,
 } from "lucide-react"
@@ -35,4 +37,6 @@ export const Icons = {
     user: User,
     arrowRight: ArrowRight,
     check: Check,
+    heart: Heart,
+    message: MessageCircle
 }

@@ -12,10 +12,5 @@ export const dashboardConfig: DashboardConfig = {
             href: "/dashboard/articles",
             icon: "fileText"
         },
-        {
-            name: "Authors",
-            href: "/dashboard/authors",
-            icon: "fileText"
-        },
     ]
 }

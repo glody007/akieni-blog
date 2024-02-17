@@ -12,7 +12,7 @@ interface DashboardNavProps extends HtmlHTMLAttributes<HTMLElement> {
 
 export function DashboardNav({ items, className }: DashboardNavProps) {
     return  (
-        <div className={cn("flex flex-col justify-between shadow-2xl p-4", className)}>
+        <div className={cn("hidden md:flex flex-col justify-between shadow-2xl p-4", className)}>
             <div className="flex flex-col gap-16">
                 <div className="flex p-2">
                     <Link href="/" className="flex items-center  gap-2">
