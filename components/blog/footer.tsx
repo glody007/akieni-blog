@@ -10,7 +10,7 @@ interface FooterProps extends React.HTMLAttributes<HTMLHeadingElement> {
 export function Footer({ className }: FooterProps) {
     return (
         <footer className={cn("flex flex-col p-4", className)}>
-            <div className="grid grid-cols-5">
+            <div className="flex flex-col gap-8 lg:grid lg:grid-cols-5">
                 <div className="h-full flex flex-col justify-between">
                     <div className="flex flex-col gap-4">
                         <p className="text-sm font-light text-muted-foreground">
@@ -39,7 +39,7 @@ export function Footer({ className }: FooterProps) {
                 </div>
                 <div className="flex flex-col gap-4 md:col-span-2">
                     <SectionHeader>Our hand-crafted newsletter</SectionHeader>
-                    <div className="flex gap-2 items-center">
+                    <div className="flex flex-col md:flex-row md:items-center gap-2">
                         <Input placeholder="Your email"/>
                         <Button>Subscribe</Button>
                     </div>
