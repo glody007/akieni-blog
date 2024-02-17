@@ -18,7 +18,7 @@ interface OverviewCardProps extends HtmlHTMLAttributes<HTMLElement> {
 export function OverviewCard({ title, description, icon, className }: OverviewCardProps) {
     const Icon = Icons[icon]
     return (
-        <Card className={cn("rounded-md gap-0", className)}>
+        <Card className={cn("gap-0", className)}>
             <CardContent className="flex flex-col gap-2 pt-6">
                 <div className="flex flex-row justify-between gap-4">
                     <p className="text-sm">{title}</p>
