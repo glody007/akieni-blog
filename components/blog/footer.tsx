@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { Button } from "../ui/button"
@@ -14,7 +15,7 @@ export function Footer({ className }: FooterProps) {
                 <div className="h-full flex flex-col justify-between">
                     <div className="flex flex-col gap-4">
                         <p className="text-sm font-light text-muted-foreground">
-                            Akieni © 2024
+                            {siteConfig.name} © 2024
                         </p>
                     </div>
                 </div>

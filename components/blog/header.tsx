@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 interface BlogHeaderProps extends React.HTMLAttributes<HTMLHeadingElement> {
@@ -11,7 +12,7 @@ export function BlogHeader({ children, className }: BlogHeaderProps) {
             className
         )}>
             <div className="">
-                <h1 className="font-semibold text-lg">Akieni</h1>
+                <h1 className="font-semibold text-lg">{siteConfig.name}</h1>
             </div>
             {children}
         </header>

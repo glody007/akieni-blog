@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -5,8 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Akieni blog",
-  description: "A blog for the akieni offline assessment",
+  title: siteConfig.name,
+  description: siteConfig.description,
 };
 
 export default function RootLayout({
