@@ -12,12 +12,14 @@ interface DashboardNavProps extends HtmlHTMLAttributes<HTMLElement> {
 
 export function DashboardNav({ items, className }: DashboardNavProps) {
     return  (
-        <div className={cn("flex flex-col justify-between rounded-lg p-4", className)}>
+        <div className={cn("flex flex-col justify-between shadow-2xl p-4", className)}>
             <div className="flex flex-col gap-16">
                 <div className="flex p-2">
-                    <Link href="/" className="flex items-center gap-2">
+                    <Link href="/" className="flex items-center  gap-2">
                         <Icons.logo className="h-8 w-8" />
-                        <span className="font-semibold text-xl uppercase">{siteConfig.name}</span>
+                        <span className=" bg-foreground font-semibold text-xl text-background px-3 py-2">
+                            {siteConfig.name}
+                        </span>
                     </Link>
                 </div>
                 <nav>
@@ -27,7 +29,7 @@ export function DashboardNav({ items, className }: DashboardNavProps) {
                             <Link 
                                 key={index} 
                                 href={item.href}
-                                className="flex items-center gap-2 text-sm rounded-md p-2 hover:bg-muted"
+                                className="flex items-center gap-2 text-sm p-2 hover:bg-muted"
                             >
                                 <Icon className="mr-2 w-4 h-4" />
                                 {item.name}

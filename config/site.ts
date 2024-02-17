@@ -1,6 +1,6 @@
 import { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-    name: "Akieni blog",
+    name: "Akienist",
     description: "A blog for the akieni offline assessment"
 }
