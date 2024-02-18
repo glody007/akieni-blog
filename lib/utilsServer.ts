@@ -1,5 +1,28 @@
-import { Article, postJSONPlaceholderSchema } from "@/lib/validation";
+import { Article, Author, postJSONPlaceholderSchema, userJSONPlaceholderSchema } from "@/lib/validation";
 import { z } from "zod";
+
+export async function getUsers() {
+    const response = await fetch(
+        'https://jsonplaceholder.typicode.com/users', 
+        { next: { revalidate: 10 } }
+    )
+    const usersData = await response.json()
+    const users = z.array(userJSONPlaceholderSchema).parse(usersData)
+
+    const userMap = new Map<string, Author>()
+
+    for(const user of users) {
+        userMap.set(
+            user.id.toString(),
+             { 
+                name: user.name, 
+                image: "https://avatars.githubusercontent.com/u/25279896?v=4"
+            }
+        )
+    }
+
+    return userMap
+}
 
 export async function getArticles() {
     const response = await fetch(
@@ -8,6 +31,7 @@ export async function getArticles() {
     )
     const postsData = await response.json()
     const posts = z.array(postJSONPlaceholderSchema).parse(postsData)
+    const userMap = await getUsers()
   
     const articles:  Article[] = posts.map(post => ({
       id: post.id.toString(),
@@ -18,7 +42,7 @@ export async function getArticles() {
       publishedAt: new Date(),
       authors: [
         { 
-          name: "Glody mbutwile", 
+          name: userMap.get(post.userId.toString())?.name || "", 
           image: "https://avatars.githubusercontent.com/u/25279896?v=4"
         }
       ]
@@ -33,12 +57,19 @@ export async function getFeaturedArticles() {
 }
 
 export async function getArticle(id: string) {
-    const response = await fetch(
+    const responsePost = await fetch(
       `https://jsonplaceholder.typicode.com/posts/${id}`, 
       { next: { revalidate: 10 } }
     )
-    const postData = await response.json()
+    const postData = await responsePost.json()
     const post = postJSONPlaceholderSchema.parse(postData)
+
+    const responseUser = await fetch(
+        `https://jsonplaceholder.typicode.com/users/${post.userId}`, 
+        { next: { revalidate: 10 } }
+    )
+    const userData = await responseUser.json()
+    const user = userJSONPlaceholderSchema.parse(userData)
   
     const article:  Article = {
       id: post.id.toString(),
@@ -49,7 +80,7 @@ export async function getArticle(id: string) {
       publishedAt: new Date(),
       authors: [
         { 
-          name: "Glody mbutwile", 
+          name: user.name, 
           image: "https://avatars.githubusercontent.com/u/25279896?v=4"
         }
       ]
