@@ -5,6 +5,7 @@ import { HtmlHTMLAttributes } from "react";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import { siteConfig } from "@/config/site";
+import { MobileNav } from "./mobile-nav";
 
 interface DashboardNavProps extends HtmlHTMLAttributes<HTMLElement> {
     items: NavItem[]
@@ -12,8 +13,8 @@ interface DashboardNavProps extends HtmlHTMLAttributes<HTMLElement> {
 
 export function DashboardNav({ items, className }: DashboardNavProps) {
     return  (
-        <div className={cn("hidden md:flex flex-col justify-between shadow-2xl p-4", className)}>
-            <div className="flex flex-col gap-10">
+        <div className={cn("flex flex-col justify-between shadow-2xl p-4 bg-background", className)}>
+            <div className="hidden lg:flex flex-col gap-10">
                 <div className="flex justify-center p-2">
                     <Link href="/" className="flex flex-col items-center gap-2">
                         <span className="block bg-foreground font-semibold text-xl text-background p-4 rounded-full">
@@ -40,11 +41,14 @@ export function DashboardNav({ items, className }: DashboardNavProps) {
                     })}
                 </nav>
             </div>
-            <div>
+            <div className="hidden lg:block">
                 <Button variant="ghost" className="w-full justify-start">
                     <Icons.logout className="w-4 h-4 mr-2" />
                     Logout
                 </Button>
+            </div>
+            <div className="block lg:hidden">
+                <MobileNav items={items} />
             </div>
         </div>
     )
