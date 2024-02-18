@@ -19,7 +19,9 @@ export function BlogHeader({ children, className }: BlogHeaderProps) {
                 </span>
                 <h1 className="font-semibold text-md hidden md:block">{siteConfig.name}</h1>
             </Link>
-            {children}
+            <div className="relative">
+                {children}
+            </div>
         </header>
     )
 }
