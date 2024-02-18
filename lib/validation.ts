@@ -12,6 +12,13 @@ export const userJSONPlaceholderSchema = z.object({
     name: z.string(),
 })
 
+export const commentJSONPlaceholderSchema = z.object({
+    postId: z.number(),
+    id: z.number(),
+    body: z.string(),
+    name: z.string(),
+})
+
 export const authorSchema = z.object({
     name: z.string(),
     image: z.string()
@@ -27,5 +34,20 @@ export const articleSchema = z.object({
     authors: z.array(authorSchema)
 })
 
+export const commentSchema = z.object({
+    articleId: z.string(),
+    name: z.string(),
+    body: z.string(),
+    createdAt: z.coerce.date()
+})
+
+export const likeSchema = z.object({
+    articleId: z.string(),
+    name: z.string(),
+    createdAt: z.coerce.date()
+})
+
 export type Author = z.infer<typeof authorSchema>
 export type Article = z.infer<typeof articleSchema>
+export type Comment = z.infer<typeof commentSchema>
+export type Like = z.infer<typeof likeSchema>

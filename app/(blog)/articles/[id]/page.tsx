@@ -1,9 +1,11 @@
+import { ArticleActions } from "@/components/blog/article-actions";
 import { ArticleAuthorList } from "@/components/blog/article-author-list";
 import { ArticleDetailsHeader } from "@/components/blog/article-details-header";
 import { Icons } from "@/components/icons";
 import { getArticle, getArticles } from "@/lib/utilsServer"
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 export const dynamicParams = true;
 
@@ -25,7 +27,7 @@ export default async function ArticlePage({ params }: Props) {
     if(!article) return notFound()
 
     return (
-        <div className="min-h-screen flex flex-col items-center p-4">
+        <div className="min-h-screen flex flex-col items-center p-4 pb-16">
             <div className="w-full flex flex-col gap-10 lg:gap-16 max-w-6xl">
                 <Link href="/" className="flex items-center cursor-pointer text-sm text-muted-foreground font-light hover:text-foreground">
                     <Icons.arrowLeft className="w-4 h-4 mr-2" />
@@ -44,6 +46,11 @@ export default async function ArticlePage({ params }: Props) {
                         </p>
                         <ArticleAuthorList authors={article.authors} />
                     </div>
+                </div>
+                <div className="grid lg:grid-cols-[1fr_280px]">
+                    <Suspense fallback={(<div>Loading...</div>)}>
+                        <ArticleActions id={article.id} />
+                    </Suspense>
                 </div>
             </div>
         </div>

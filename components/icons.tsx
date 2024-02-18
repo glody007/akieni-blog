@@ -18,6 +18,7 @@ import {
     MessageCircle,
     type LucideIcon,
     FileStack,
+    Handshake,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -40,5 +41,6 @@ export const Icons = {
     arrowLeft: ArrowLeft,
     check: Check,
     heart: Heart,
-    message: MessageCircle
+    message: MessageCircle,
+    handShake: Handshake
 }

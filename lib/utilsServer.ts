@@ -1,4 +1,4 @@
-import { Article, Author, postJSONPlaceholderSchema, userJSONPlaceholderSchema } from "@/lib/validation";
+import { Article, Author, Comment, commentJSONPlaceholderSchema, Like, postJSONPlaceholderSchema, userJSONPlaceholderSchema } from "@/lib/validation";
 import { z } from "zod";
 
 export async function getUsers() {
@@ -87,4 +87,36 @@ export async function getArticle(id: string) {
     }
   
     return article
+}
+
+export async function getArticleInteractions(articleId: string) {
+    const responseComments = await fetch(
+        'https://jsonplaceholder.typicode.com/comments', 
+        { next: { revalidate: 10 } }
+    )
+    const commentsData = await responseComments.json()
+    const commentsPlaceholder = z.array(commentJSONPlaceholderSchema).parse(commentsData)
+    const likesPlaceHolder = z.array(commentJSONPlaceholderSchema).parse(commentsData)
+    
+    const comments: Comment[] = commentsPlaceholder.filter(
+        comment => comment.postId.toString() === articleId
+    ).map(comment => ({
+        name: comment.name,
+        articleId: comment.postId.toString(),
+        body: comment.body,
+        createdAt: new Date()
+    }))
+
+    const likes: Like[] = likesPlaceHolder.filter(
+        comment => comment.postId.toString() === articleId
+    ).map(comment => ({
+        name: comment.name,
+        articleId: comment.postId.toString(),
+        createdAt: new Date()
+    }))
+
+    return {
+        comments,
+        likes
+    }
 }
