@@ -21,7 +21,7 @@ export function FeaturedArticle({ article, className }: FeaturedArticleItemProps
                     </p>
                 </div>
                 <div className="w-[25%] justify-end text-nowrap text-muted-foreground text-sm">
-                    {format(article.publishedAt, "MMM dd yyyy")}
+                    {format(article.publishedAt, "MMM io yyyy")}
                 </div>
             </div>
         </Link>

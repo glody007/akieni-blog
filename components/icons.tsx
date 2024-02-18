@@ -1,5 +1,6 @@
 import {
     ArrowRight,
+    ArrowLeft,
     Check,
     ChevronLeft,
     ChevronRight,
@@ -36,6 +37,7 @@ export const Icons = {
     plus: Plus,
     user: User,
     arrowRight: ArrowRight,
+    arrowLeft: ArrowLeft,
     check: Check,
     heart: Heart,
     message: MessageCircle

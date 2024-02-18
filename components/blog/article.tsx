@@ -17,7 +17,7 @@ export function Article({ article, className }: ArticleItemProps) {
             <div className="flex items-center gap-4">
                 <AuthorBadgeList authors={article.authors} />
                 <p className="text-xs text-muted-foreground font-light">
-                    {format(article.publishedAt, "MMM dd yyyy")}
+                    {format(article.publishedAt, "MMM io yyyy")}
                 </p>
             </div>
         </Link>
