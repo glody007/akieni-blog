@@ -21,6 +21,7 @@ export const articleSchema = z.object({
     id: z.string(),
     title: z.string(),
     description: z.string(),
+    body: z.string(),
     category: z.string(),
     publishedAt: z.coerce.date(),
     authors: z.array(authorSchema)

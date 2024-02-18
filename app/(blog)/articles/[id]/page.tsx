@@ -1,6 +1,6 @@
+import { ArticleDetailsHeader } from "@/components/blog/article-details-header";
 import { Icons } from "@/components/icons";
 import { getArticle, getArticles } from "@/lib/utilsServer"
-import { format } from "date-fns";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -30,19 +30,16 @@ export default async function ArticlePage({ params }: Props) {
                     <Icons.arrowLeft className="w-4 h-4 mr-2" />
                     Back to blog
                 </Link>
-                <div className="flex flex-col gap-4 lg:gap-6">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground font-light">
-                        <div className="bg-muted text-foreground rounded-2xl px-3 py-2">
-                            {article.category}
-                        </div>
-                        <div>
-                            {format(article.publishedAt, "EEEE, MMMM io yyyy")}
-                        </div>
+                <div className="grid lg:grid-cols-[1fr_280px]">
+                    <ArticleDetailsHeader article={article} />
+                </div>
+                <div className="grid lg:grid-cols-[1fr_280px] lg:min-h-screen lg:divide-x">
+                    <div className="lg:pr-8">
+                        {article.body}
                     </div>
-                    <h1 className="text-3xl lg:text-5xl font-bold first-letter:uppercase">
-                        {article.title}
-                    </h1>
-                    <h2 className="text-lg lg:text-xl text-muted-foreground">{article.description}</h2>
+                    <div>
+
+                    </div>
                 </div>
             </div>
         </div>

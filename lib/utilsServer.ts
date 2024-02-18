@@ -13,6 +13,7 @@ export async function getArticles() {
       id: post.id.toString(),
       title: post.title,
       description: "lorem ipsum dolor",
+      body: post.body,
       category: "category",
       publishedAt: new Date(),
       authors: [
@@ -43,6 +44,7 @@ export async function getArticle(id: string) {
       id: post.id.toString(),
       title: post.title,
       description: "lorem ipsum dolor",
+      body: post.body,
       category: "category",
       publishedAt: new Date(),
       authors: [
