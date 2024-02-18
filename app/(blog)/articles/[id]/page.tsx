@@ -1,3 +1,4 @@
+import { ArticleAuthorList } from "@/components/blog/article-author-list";
 import { ArticleDetailsHeader } from "@/components/blog/article-details-header";
 import { Icons } from "@/components/icons";
 import { getArticle, getArticles } from "@/lib/utilsServer"
@@ -37,8 +38,11 @@ export default async function ArticlePage({ params }: Props) {
                     <div className="lg:pr-8">
                         {article.body}
                     </div>
-                    <div>
-
+                    <div className="flex flex-col gap-4 lg:pl-4">
+                        <p className="text-sm text-muted-foreground font-light">
+                            Posted by
+                        </p>
+                        <ArticleAuthorList authors={article.authors} />
                     </div>
                 </div>
             </div>
