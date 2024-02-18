@@ -22,20 +22,18 @@ export function Footer({ className }: FooterProps) {
                 <div className="flex flex-col gap-4">
                     <SectionHeader>Follow</SectionHeader>
                     <div className="flex flex-col gap-2">
-                        <SectionItem href="http://">Lorem ipsum</SectionItem>
-                        <SectionItem href="http://">Lorem ipsum</SectionItem>
-                        <SectionItem href="http://">Lorem ipsum</SectionItem>
-                        <SectionItem href="http://">Lorem ipsum</SectionItem>
-                        <SectionItem href="http://">Lorem ipsum</SectionItem>
+                        <SectionItem href="https://www.linkedin.com/company/akieni">Linkedin</SectionItem>
+                        <SectionItem href="https://www.facebook.com/akieniofficiel/">Facebook</SectionItem>
+                        <SectionItem href="https://www.instagram.com/akieniofficiel/">Instagram</SectionItem>
+                        <SectionItem href="https://www.youtube.com/@akieniofficiel">Youtube</SectionItem>
                     </div>
                 </div>
                 <div className="flex flex-col gap-4">
                     <SectionHeader>Resources</SectionHeader>
                     <div className="flex flex-col gap-2">
-                        <SectionItem href="http://">Lorem ipsum</SectionItem>
-                        <SectionItem href="http://">Lorem ipsum</SectionItem>
-                        <SectionItem href="http://">Lorem ipsum</SectionItem>
-                        <SectionItem href="http://">Lorem ipsum</SectionItem>
+                        <SectionItem href="https://documents1.worldbank.org/curated/en/668111530296585544/pdf/126034-PPAR-P108368-P117652-P165413-P165415-PUBLIC.pdf">Connectivity</SectionItem>
+                        <SectionItem href="https://www.worldbank.org/en/news/press-release/2022/12/16/the-republic-of-congo-undertakes-reforms-to-promote-governance-inclusive-and-sustainable-growth-with-world-bank-support">Actualities</SectionItem>
+                        <SectionItem href="https://au.int/en/documents/20200518/digital-transformation-strategy-africa-2020-2030">Strategies</SectionItem>
                     </div>
                 </div>
                 <div className="flex flex-col gap-4 md:col-span-2">
