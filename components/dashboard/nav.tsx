@@ -1,6 +1,9 @@
+"use client"
+
 import { cn } from "@/lib/utils";
 import { NavItem } from "@/types";
 import Link from "next/link";
+import { useSelectedLayoutSegment } from "next/navigation"
 import { HtmlHTMLAttributes } from "react";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
@@ -12,6 +15,8 @@ interface DashboardNavProps extends HtmlHTMLAttributes<HTMLElement> {
 }
 
 export function DashboardNav({ items, className }: DashboardNavProps) {
+    const segment = useSelectedLayoutSegment()
+    
     return  (
         <div className={cn("flex flex-col justify-between shadow-2xl p-4 bg-background", className)}>
             <div className="hidden lg:flex flex-col gap-10">
@@ -32,7 +37,11 @@ export function DashboardNav({ items, className }: DashboardNavProps) {
                             <Link 
                                 key={index} 
                                 href={item.href}
-                                className="flex items-center gap-2 text-sm p-2 hover:bg-muted"
+                                className={cn(
+                                    "flex items-center gap-2 text-sm p-2 text-foreground/80 hover:bg-muted",
+                                    { "text-foreground bg-muted": item.href.endsWith(`/${segment}`) },
+                                    { "text-foreground bg-muted": !segment &&  item.href === "/dashboard"}
+                                )}
                             >
                                 <Icon className="mr-2 w-4 h-4" />
                                 {item.name}
