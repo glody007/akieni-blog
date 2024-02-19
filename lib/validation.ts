@@ -37,6 +37,7 @@ export const articleSchema = z.object({
 export const commentSchema = z.object({
     articleId: z.string(),
     name: z.string(),
+    image: z.string(),
     body: z.string(),
     createdAt: z.coerce.date()
 })
@@ -44,6 +45,7 @@ export const commentSchema = z.object({
 export const likeSchema = z.object({
     articleId: z.string(),
     name: z.string(),
+    image: z.string(),
     createdAt: z.coerce.date()
 })
 

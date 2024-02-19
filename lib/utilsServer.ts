@@ -92,7 +92,7 @@ export async function getArticle(id: string) {
 
     const responseUser = await fetch(
         `https://jsonplaceholder.typicode.com/users/${post.userId}`, 
-        { next: { revalidate: 10 } }
+        { next: { revalidate: 10, tags: ['articles'] } }
     )
     const userData = await responseUser.json()
     const user = userJSONPlaceholderSchema.parse(userData)
@@ -118,7 +118,7 @@ export async function getArticle(id: string) {
 export async function getArticleInteractions(articleId: string) {
     const responseComments = await fetch(
         'https://jsonplaceholder.typicode.com/comments', 
-        { next: { revalidate: 10 } }
+        { next: { revalidate: 10, tags: ['comments', 'likes'] } }
     )
     const commentsData = await responseComments.json()
     const commentsPlaceholder = z.array(commentJSONPlaceholderSchema).parse(commentsData)
@@ -128,6 +128,7 @@ export async function getArticleInteractions(articleId: string) {
         comment => comment.postId.toString() === articleId
     ).map(comment => ({
         name: comment.name,
+        image: "https://avatars.githubusercontent.com/u/25279896?v=4",
         articleId: comment.postId.toString(),
         body: comment.body,
         createdAt: new Date()
@@ -137,6 +138,7 @@ export async function getArticleInteractions(articleId: string) {
         comment => comment.postId.toString() === articleId
     ).map(comment => ({
         name: comment.name,
+        image: "https://avatars.githubusercontent.com/u/25279896?v=4",
         articleId: comment.postId.toString(),
         createdAt: new Date()
     }))

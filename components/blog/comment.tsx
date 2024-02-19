@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button"
 import {
   Sheet,
   SheetContent,
@@ -14,8 +13,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { CommentList } from "./comment-list"
 
 interface CommentProps {
   articleId: string
@@ -23,6 +21,7 @@ interface CommentProps {
 }
 
 export function Comment({ articleId, children }: CommentProps) {
+  
   return (
     <Sheet>
         <TooltipProvider>
@@ -39,15 +38,12 @@ export function Comment({ articleId, children }: CommentProps) {
               </TooltipContent>
             </Tooltip>
         </TooltipProvider>
-      <SheetContent className="sm:max-w-[425px]">
+      <SheetContent className="sm:max-w-[425px] h-full overflow-y-scroll">
         <SheetHeader>
           <SheetTitle>Responses</SheetTitle>
-          <SheetDescription>
-            List of responses
-          </SheetDescription>
         </SheetHeader>
-        <div className="grid gap-4 py-4">
-          
+        <div className="pt-4">
+          <CommentList articleId={articleId} />
         </div>
       </SheetContent>
     </Sheet>

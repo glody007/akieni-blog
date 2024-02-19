@@ -16,7 +16,6 @@ export function ArticleList({  }: ArticlesProps) {
         isLoading,
         fetchNextPage,
         hasNextPage,
-        isFetching,
         isFetchingNextPage,
     } = useGetArticles()
 

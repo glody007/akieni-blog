@@ -1,7 +1,7 @@
 "use server"
 
 import { requestConfig } from "@/config/request"
-import { getArticles, getArticlesPages } from "@/lib/utilsServer"
+import { getArticleInteractions, getArticles, getArticlesPages } from "@/lib/utilsServer"
 
 export async function getPaginatedArticles(currentPage: number) {
     const allArticles = await getArticles()
@@ -18,4 +18,14 @@ export async function getPaginatedArticles(currentPage: number) {
         data,
         nextCursor: currentPage + 1
     }
+} 
+
+export async function getArticleLikes(articleId: string) {
+    const interactions =  await getArticleInteractions(articleId)
+    return interactions.likes
+} 
+
+export async function getArticleComments(articleId: string) {
+    const interactions =  await getArticleInteractions(articleId)
+    return interactions.comments
 } 
