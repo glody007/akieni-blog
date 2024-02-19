@@ -3,13 +3,15 @@ import { OverviewCard } from "@/components/dashboard/overview-card";
 import { DashboardShell } from "@/components/dashboard/shell";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { TimeSpent } from "@/components/dashboard/time-spent";
+import { Suspense } from "react";
+import { AuthorList } from "@/components/dashboard/author-list";
 
 export const metadata: Metadata = {
   title: "Dashboard",
   description: "Analytics of the blog",
 }
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
     return (
       <DashboardShell title="Dashboard" className="h-full pt-4">
         <div className="h-full grid md:grid-cols-[1fr_300px] gap-4">
@@ -63,6 +65,11 @@ export default function DashboardPage() {
               <CardTitle>Authors</CardTitle>
               <CardDescription>Authors details</CardDescription>
             </CardHeader>
+            <CardContent>
+              <Suspense fallback={(<div>Loading...</div>)}>
+                <AuthorList />
+              </Suspense>
+            </CardContent>
           </Card>
         </div>
       </DashboardShell>

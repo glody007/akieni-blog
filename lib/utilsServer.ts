@@ -29,6 +29,20 @@ export async function getUsers() {
     return userMap
 }
 
+export async function getAuthors() {
+    const response = await fetch(
+        'https://jsonplaceholder.typicode.com/users', 
+        { next: { revalidate: 10 } }
+    )
+    const usersData = await response.json()
+    const users = z.array(userJSONPlaceholderSchema).parse(usersData)
+
+    return users.slice(undefined, 5).map(user => ({ 
+        name: user.name, 
+        image: "https://avatars.githubusercontent.com/u/25279896?v=4"
+    }))
+}
+
 export async function getArticles() {
     const response = await fetch(
       'https://jsonplaceholder.typicode.com/posts', 
