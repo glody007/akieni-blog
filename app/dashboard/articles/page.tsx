@@ -1,9 +1,24 @@
 import { ArticleList } from "@/components/dashboard/article-list";
 import { CreateArticleButton } from "@/components/dashboard/create-article-button";
+import Pagination from "@/components/dashboard/pagination";
+import Search from "@/components/dashboard/search";
 import { DashboardShell } from "@/components/dashboard/shell";
+import { getArticlesPages } from "@/lib/utilsServer";
 import { Suspense } from "react";
 
-export default function ArticlesPage() {
+export default async function ArticlesPage({
+    searchParams,
+}: {
+    searchParams?: {
+      query?: string;
+      page?: string;
+    };
+}) {
+    const query = searchParams?.query || '';
+    const currentPage = Number(searchParams?.page) || 1;
+
+    const totalPages = await getArticlesPages(query);
+
     return (
         <DashboardShell 
             title="Articles" 
@@ -12,9 +27,15 @@ export default function ArticlesPage() {
             )}
             className="h-full pt-4"
         >
-            <Suspense fallback={<div>Loading...</div>}>
-                <ArticleList />
+            <div className="w-full flex items-center gap-2 md:w-[300px]">
+                <Search placeholder="Search articles..." />
+            </div>
+            <Suspense key={query + currentPage} fallback={<div>Loading...</div>}>
+                <ArticleList query={query} currentPage={currentPage}  />
             </Suspense>
+            <div className="mt-5 flex w-full justify-center">
+                <Pagination totalPages={totalPages} />
+            </div>
         </DashboardShell>
     )
 }

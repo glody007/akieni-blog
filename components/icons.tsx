@@ -20,6 +20,7 @@ import {
     FileStack,
     Handshake,
     Save,
+    Search,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -45,4 +46,5 @@ export const Icons = {
     message: MessageCircle,
     handShake: Handshake,
     save: Save,
+    search: Search
 }

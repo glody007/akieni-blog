@@ -1,15 +1,14 @@
-import { Article as ArticleType } from "@/lib/validation"
-import { HTMLAttributes } from "react"
 import { Article } from "./article"
-import { getArticles } from "@/lib/utilsServer"
+import { getArticles, getFilteredArticles } from "@/lib/utilsServer"
 
-
-interface ArticlesProps extends HTMLAttributes<HTMLElement> {
-    
-}
-
-export async function ArticleList({ }: ArticlesProps) {
-    const articles = await getArticles()
+export async function ArticleList({
+    query,
+    currentPage,
+}: {
+    query: string;
+    currentPage: number;
+}) {
+    const articles = await getFilteredArticles(query, currentPage)
 
     return (
         <div className="flex flex-col min-h-[600px] gap-4 md:grid md:grid-cols-2 lg:grid-cols-3">

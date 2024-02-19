@@ -124,3 +124,16 @@ export async function getArticleInteractions(articleId: string) {
         likes
     }
 }
+
+export async function getArticlesPages(query: string) {
+    return 8
+}
+
+export async function getFilteredArticles(query: string, currentPage: number) {
+    const allArticles = await getArticles()
+    const filtered =  allArticles.filter(
+        article => article.title.toLowerCase().includes(query.toLocaleLowerCase())
+    )
+
+    return filtered
+}
