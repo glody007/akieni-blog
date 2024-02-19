@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -15,6 +14,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Textarea } from "../ui/textarea"
+import { LikeItemList } from "./like-item-list"
 
 interface LikeListProps {
   articleId: string
@@ -42,8 +42,8 @@ export function LikeList({ articleId, children }: LikeListProps) {
         <DialogHeader>
           <DialogTitle>People who liked the article</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-            
+        <div className="pt-4">
+          <LikeItemList articleId={articleId} />
         </div>
       </DialogContent>
     </Dialog>
