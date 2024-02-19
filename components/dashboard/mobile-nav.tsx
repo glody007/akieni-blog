@@ -1,3 +1,5 @@
+"use client"
+
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { NavItem } from "@/types";
@@ -17,12 +19,15 @@ import {
 } from "@/components/ui/avatar"
 import { Icons } from "@/components/icons"
 import Link from "next/link"
+import { useAuth } from "@clerk/nextjs";
 
 interface MobileNavProps extends React.HTMLAttributes<HTMLHeadingElement> {
     items: NavItem[] 
 }
 
 export function MobileNav({ items, className }: MobileNavProps) {
+    const { signOut } = useAuth()
+
     return (
         <div className={cn(
             "flex items-center justify-between",
@@ -58,7 +63,7 @@ export function MobileNav({ items, className }: MobileNavProps) {
                     })}
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => signOut()}>
                     <Icons.logout className="mr-2 h-4 w-4" />
                     <span>Log out</span>
                 </DropdownMenuItem>

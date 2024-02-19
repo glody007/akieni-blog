@@ -4,11 +4,11 @@ import { cn } from "@/lib/utils";
 import { NavItem } from "@/types";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation"
-import { HtmlHTMLAttributes } from "react";
-import { Button } from "@/components/ui/button";
+import { HtmlHTMLAttributes, Suspense } from "react";
 import { Icons } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 import { MobileNav } from "./mobile-nav";
+import { SignOutButton } from "./signout-button";
 
 interface DashboardNavProps extends HtmlHTMLAttributes<HTMLElement> {
     items: NavItem[]
@@ -51,13 +51,14 @@ export function DashboardNav({ items, className }: DashboardNavProps) {
                 </nav>
             </div>
             <div className="hidden lg:block">
-                <Button variant="ghost" className="w-full justify-start">
-                    <Icons.logout className="w-4 h-4 mr-2" />
-                    Logout
-                </Button>
+                <Suspense fallback={(<div>Loading...</div>)}>
+                    <SignOutButton />
+                </Suspense>
             </div>
             <div className="block lg:hidden">
-                <MobileNav items={items} />
+                <Suspense fallback={(<div>Loading...</div>)}>
+                    <MobileNav items={items} />
+                </Suspense>
             </div>
         </div>
     )
