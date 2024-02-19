@@ -14,7 +14,7 @@ export default function DashboardPage() {
       <DashboardShell title="Dashboard" className="h-full pt-4">
         <div className="h-full grid md:grid-cols-[1fr_300px] gap-4">
           <div className="flex flex-col gap-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
               <div>
                 <OverviewCard 
                   title="Users" 
@@ -44,7 +44,7 @@ export default function DashboardPage() {
                 />
               </div>
             </div>
-            <Card className="flex-1">
+            <Card className="xl:flex-1">
               <CardHeader>
                 <CardTitle>
                   Time spent by users
