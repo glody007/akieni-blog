@@ -157,3 +157,21 @@ export async function getFilteredArticles(query: string, currentPage: number) {
     const endIndex = startIndex + requestConfig.pageSize
     return filteredArticles.slice(startIndex, endIndex)
 }
+
+export async function getMetrics() {
+    const responseComments = await fetch(
+        'https://jsonplaceholder.typicode.com/comments', 
+        { next: { revalidate: 10 } }
+    )
+    const commentsData = await responseComments.json()
+    const comments = z.array(commentJSONPlaceholderSchema).parse(commentsData)
+    const articles = await getArticles()
+    const authors = await getAuthors()
+
+    return {
+        articles: articles.length,
+        authors: authors.length,
+        comments: comments.length,
+        likes: comments.length * 2.5
+    }
+}

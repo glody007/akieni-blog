@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { TimeSpent } from "@/components/dashboard/time-spent";
 import { Suspense } from "react";
 import { AuthorList } from "@/components/dashboard/author-list";
+import { getMetrics } from "@/lib/utilsServer";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
 }
 
 export default async function DashboardPage() {
+    const metrics = await getMetrics()
+    
     return (
       <DashboardShell title="Dashboard" className="h-full pt-4">
         <div className="h-full grid md:grid-cols-[1fr_300px] gap-4">
@@ -20,28 +23,28 @@ export default async function DashboardPage() {
               <div>
                 <OverviewCard 
                   title="Users" 
-                  description="450" 
+                  description={metrics.authors.toString()}
                   icon="user" 
                 />
               </div>
               <div>
                 <OverviewCard 
                   title="Articles" 
-                  description="40" 
+                  description={metrics.articles.toString()} 
                   icon="file" 
                 />
               </div>
               <div>
                 <OverviewCard 
                   title="Likes" 
-                  description="60" 
+                  description={metrics.likes.toString()} 
                   icon="heart" 
                 />
               </div>
               <div>
                 <OverviewCard 
                   title="Comments" 
-                  description="79" 
+                  description={metrics.comments.toString()} 
                   icon="message" 
                 />
               </div>
