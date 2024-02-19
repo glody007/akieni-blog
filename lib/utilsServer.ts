@@ -72,7 +72,14 @@ export async function getArticles() {
 
 export async function getFeaturedArticles() {
     const allArticles = await getArticles()
+    if(allArticles.length < 6) return []
     return allArticles.slice(0, 5)
+}
+
+export async function getRelatedArticles(articleId: string) {
+    const allArticles = await getArticles()
+    if(allArticles.length < 11) return []
+    return allArticles.slice(7, 10)
 }
 
 export async function getArticle(id: string) {

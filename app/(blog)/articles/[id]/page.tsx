@@ -1,6 +1,7 @@
 import { ArticleActions } from "@/components/blog/article-actions";
 import { ArticleAuthorList } from "@/components/blog/article-author-list";
 import { ArticleDetailsHeader } from "@/components/blog/article-details-header";
+import { RelatedArticleList } from "@/components/blog/related-article-list";
 import { Icons } from "@/components/icons";
 import { getArticle, getArticles } from "@/lib/utilsServer"
 import Link from "next/link";
@@ -40,11 +41,21 @@ export default async function ArticlePage({ params }: Props) {
                     <div className="lg:pr-8">
                         {article.body}
                     </div>
-                    <div className="flex flex-col gap-4 lg:pl-4">
-                        <p className="text-sm text-muted-foreground font-light">
-                            Posted by
-                        </p>
-                        <ArticleAuthorList authors={article.authors} />
+                    <div className="flex flex-col gap-8 lg:pl-4">
+                        <div className="flex flex-col gap-4">
+                            <p className="text-sm text-muted-foreground font-light">
+                                Posted by
+                            </p>
+                            <ArticleAuthorList authors={article.authors} />
+                        </div>
+                        <div className="flex flex-col gap-4">
+                            <p className="text-sm text-muted-foreground font-light">
+                                Related Articles
+                            </p>
+                            <Suspense fallback={(<div>Loading...</div>)}>
+                                <RelatedArticleList article={article} />
+                            </Suspense>
+                        </div>
                     </div>
                 </div>
                 <div className="grid lg:grid-cols-[1fr_280px]">
