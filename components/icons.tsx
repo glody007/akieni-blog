@@ -19,6 +19,7 @@ import {
     type LucideIcon,
     FileStack,
     Handshake,
+    Save,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -42,5 +43,6 @@ export const Icons = {
     check: Check,
     heart: Heart,
     message: MessageCircle,
-    handShake: Handshake
+    handShake: Handshake,
+    save: Save,
 }
