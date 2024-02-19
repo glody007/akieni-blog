@@ -9,7 +9,7 @@ interface FeaturedArticlesProps extends HTMLAttributes<HTMLElement> {
 
 export function FeaturedArticleList({ articles }: FeaturedArticlesProps) {
     return (
-        <div className="flex flex-col bg-muted min-h-[600px] gap-4 lg:grid lg:grid-cols-3 lg:grid-rows-5">
+        <div className="flex flex-col min-h-[600px] gap-4 lg:grid lg:grid-cols-3 lg:grid-rows-5">
             <FeaturedArticle 
                 article={articles[0]} 
                 className="row-span-5" 

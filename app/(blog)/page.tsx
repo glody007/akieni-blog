@@ -1,10 +1,19 @@
 import { ArticleList } from "@/components/blog/article-list";
 import { FeaturedArticleList } from "@/components/blog/featured-article-list";
-import { getArticles, getFeaturedArticles } from "@/lib/utilsServer";
+import { getFeaturedArticles } from "@/lib/utilsServer";
+import { getPaginatedArticles } from "@/server/actions";
+import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
 
 export default async function Blog() {
+  const queryClient = new QueryClient()
+
   const featuredArticles = await getFeaturedArticles()
-  const allArticles = await getArticles()
+
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ["articles"],
+    queryFn: async ({ pageParam }) => getPaginatedArticles(pageParam),
+    initialPageParam: 1
+  })
 
   return (
     <div className="min-h-screen flex flex-col items-center p-4 py-16">
@@ -17,7 +26,9 @@ export default async function Blog() {
         )}
         <div className="flex flex-col gap-5 lg:gap-10">
           <h1 className="text-3xl lg:text-5xl font-semibold">Latest</h1>
-          <ArticleList articles={allArticles} />
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <ArticleList />
+          </HydrationBoundary>
         </div>
       </div>
     </div>
