@@ -1,6 +1,10 @@
 import { Article, Author, Comment, commentJSONPlaceholderSchema, Like, postJSONPlaceholderSchema, userJSONPlaceholderSchema } from "@/lib/validation";
 import { z } from "zod";
 
+function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export async function getUsers() {
     const response = await fetch(
         'https://jsonplaceholder.typicode.com/users', 
