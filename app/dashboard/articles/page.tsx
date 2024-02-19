@@ -33,7 +33,7 @@ export default async function ArticlesPage({
             <Suspense key={query + currentPage} fallback={<div>Loading...</div>}>
                 <ArticleList query={query} currentPage={currentPage}  />
             </Suspense>
-            <div className="mt-5 flex w-full justify-center">
+            <div className="flex w-full justify-center">
                 <Pagination totalPages={totalPages} />
             </div>
         </DashboardShell>

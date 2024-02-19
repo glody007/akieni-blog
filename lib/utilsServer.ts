@@ -1,3 +1,4 @@
+import { requestConfig } from "@/config/request";
 import { Article, Author, Comment, commentJSONPlaceholderSchema, Like, postJSONPlaceholderSchema, userJSONPlaceholderSchema } from "@/lib/validation";
 import { z } from "zod";
 
@@ -126,14 +127,19 @@ export async function getArticleInteractions(articleId: string) {
 }
 
 export async function getArticlesPages(query: string) {
-    return 8
+    const allArticles = await getArticles()
+    const filteredArticles =  allArticles.filter(
+        article => article.title.toLowerCase().includes(query.toLocaleLowerCase())
+    )
+    return Math.ceil(filteredArticles.length / requestConfig.pageSize)
 }
 
 export async function getFilteredArticles(query: string, currentPage: number) {
     const allArticles = await getArticles()
-    const filtered =  allArticles.filter(
+    const filteredArticles =  allArticles.filter(
         article => article.title.toLowerCase().includes(query.toLocaleLowerCase())
     )
-
-    return filtered
+    const startIndex = (currentPage - 1) * requestConfig.pageSize
+    const endIndex = startIndex + requestConfig.pageSize
+    return filteredArticles.slice(startIndex, endIndex)
 }
