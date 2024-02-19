@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ClerkProvider } from '@clerk/nextjs'
+
 interface Props {
     children: React.ReactNode
 }
@@ -19,8 +21,10 @@ export default function Providers({ children }: Props)  {
     )
 
     return (
-        <QueryClientProvider client={queryClient}>
-            {children}
-        </QueryClientProvider>
+        <ClerkProvider>
+            <QueryClientProvider client={queryClient}>
+                {children}
+            </QueryClientProvider>
+        </ClerkProvider>
     )
 }

@@ -14,9 +14,12 @@ import {
 } from "@/components/ui/avatar"
 import { Icons } from "@/components/icons"
 import Link from "next/link"
+import { UserButton } from "@clerk/nextjs";
   
 export function AccountMenu() {
     return (
+      <div className="flex gap-2">
+      <UserButton />
       <DropdownMenu>
         <DropdownMenuTrigger className="cursor-pointer" asChild>
             <Avatar>
@@ -41,6 +44,7 @@ export function AccountMenu() {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      </div>
     )
  }
   
