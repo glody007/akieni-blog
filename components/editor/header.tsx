@@ -18,9 +18,9 @@ export function EditorHeader({ handleSave, article, className }: EditorHeaderPro
         )}>
             <div className="w-[50%] flex items-center gap-2">
                 <Link href="/dashboard/articles">
-                    <Icons.file className="h-6 w-6 md:w-8 md:h-8" />
+                    <Icons.file className="h-6 w-6 md:w-8 md:h-8 text-muted-foreground" />
                 </Link>
-                <h1 className="text-nowrap text-ellipsis overflow-hidden">
+                <h1 className="font-light text-nowrap text-ellipsis overflow-hidden">
                     {article.title}
                 </h1>
             </div>
