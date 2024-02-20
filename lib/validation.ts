@@ -49,6 +49,29 @@ export const likeSchema = z.object({
     createdAt: z.coerce.date()
 })
 
+export const emailPostSchema = z.object({
+    email: z.string().email({ message: "Enter a valid email address"})
+})
+
+export const articleBodyUpdateSchema = z.object({
+    articleId: z.string(),
+    body: z.any()
+})
+
+export const articleTitleUpdateSchema = z.object({
+    articleId: z.string(),
+    title: z.string()
+})
+
+export const articlePostCommentSchema = z.object({
+    articleId: z.string(),
+    body: z.string()
+})
+
+export const articlePostLikeSchema = z.object({
+    articleId: z.string()
+})
+
 export type Author = z.infer<typeof authorSchema>
 export type Article = z.infer<typeof articleSchema>
 export type Comment = z.infer<typeof commentSchema>

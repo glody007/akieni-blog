@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
+import { SubscribeForm } from "./subscribe-form"
 
 interface FooterProps extends React.HTMLAttributes<HTMLHeadingElement> {
     
@@ -11,7 +12,7 @@ interface FooterProps extends React.HTMLAttributes<HTMLHeadingElement> {
 export function Footer({ className }: FooterProps) {
     return (
         <footer className={cn("flex flex-col p-4", className)}>
-            <div className="flex flex-col gap-8 lg:grid lg:grid-cols-5">
+            <div className="flex flex-col gap-8 md:grid md:grid-cols-3 lg:grid-cols-5">
                 <div className="h-full flex flex-col justify-between">
                     <div className="flex flex-col gap-4">
                         <p className="text-sm font-light text-muted-foreground">
@@ -36,12 +37,8 @@ export function Footer({ className }: FooterProps) {
                         <SectionItem href="https://au.int/en/documents/20200518/digital-transformation-strategy-africa-2020-2030">Strategies</SectionItem>
                     </div>
                 </div>
-                <div className="flex flex-col gap-4 md:col-span-2">
-                    <SectionHeader>Our hand-crafted newsletter</SectionHeader>
-                    <div className="flex flex-col md:flex-row md:items-center gap-2">
-                        <Input placeholder="Your email"/>
-                        <Button>Subscribe</Button>
-                    </div>
+                <div className="flex md:col-span-2">
+                    <SubscribeForm />
                 </div>
             </div>
         </footer>
