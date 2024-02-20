@@ -8,7 +8,7 @@ export default function DashboardLayout({
 }>) {
   return (
     <div className="relative h-screen lg:grid lg:grid-cols-[240px_1fr] gap-4 p-4">
-      <aside className="sticky top-0 lg:top-4 md:h-full">
+      <aside className="sticky top-0 lg:top-4 lg:h-full">
         <DashboardNav 
           items={dashboardConfig.nav} 
           className="lg:h-full"

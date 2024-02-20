@@ -7,10 +7,11 @@ import { Button } from "@/components/ui/button";
 
 interface EditorHeaderProps extends React.HTMLAttributes<HTMLHeadingElement> {
     article: Article
+    isSaving: boolean
     handleSave: () => void
 }
 
-export function EditorHeader({ handleSave, article, className }: EditorHeaderProps) {
+export function EditorHeader({ isSaving, handleSave, article, className }: EditorHeaderProps) {
     return (
         <header className={cn(
             "flex items-center justify-between p-4",
@@ -26,8 +27,12 @@ export function EditorHeader({ handleSave, article, className }: EditorHeaderPro
             </div>
             <div className="flex items-center gap-4">
                 <AuthorBadgeList size="md" authors={article.authors} />
-                <Button onClick={handleSave}>
-                    <Icons.save className="w-4 h-4 md:mr-2" />
+                <Button onClick={handleSave} disabled={isSaving}>
+                    {isSaving ? (
+                        <Icons.loader className="w-4 h-4 md:mr-2 animate-spin" />
+                    ) : (
+                        <Icons.save className="w-4 h-4 md:mr-2" />
+                    )}
                     <span className="hidden md:inline">Save</span>
                 </Button>
             </div>
