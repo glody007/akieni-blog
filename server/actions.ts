@@ -3,10 +3,12 @@
 import { requestConfig } from "@/config/request"
 import prisma from "@/lib/prisma"
 import { action } from "@/lib/safe-action"
-import { getArticleInteractions, getArticles, getArticlesPages } from "@/lib/utilsServer"
+import { getArticleInteractions, getArticles, getArticlesPages, getUserAndCreateIfHeNotExist } from "@/lib/utilsServer"
 import { articleBodyUpdateSchema, articlePostCommentSchema, articlePostLikeSchema, articleTitleUpdateSchema, emailPostSchema } from "@/lib/validation"
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
+import { auth, currentUser } from "@clerk/nextjs";
+import { ArticleList } from "@/components/dashboard/article-list"
 
 export async function getPaginatedArticles(currentPage: number) {
     const allArticles = await getArticles()
@@ -54,12 +56,39 @@ export const subscribe = action(emailPostSchema, async ({ email }) => {
 })
 
 export const createArticle = action(z.object({}), async () => {
-    revalidatePath('/articles')
-    revalidatePath('/dashboard')
-    revalidatePath('/dashboard/articles')
+    const defaultData =  {
+        "time":1708430429202,
+        "blocks":[{
+            "id":"9H3PxLZJNY",
+            "type":"paragraph",
+            "data":{ "text": "" }
+        }],
+        "version":"2.29.0"
+    }
+
+    const user = await getUserAndCreateIfHeNotExist()
+    if(user) {
+        const article = await prisma.article.create({
+            data: {
+               title: `Draft ${new Date()}`,
+               description: "",
+               body: JSON.stringify(defaultData),
+               category: "category",
+               authors: {
+                connect: [{ id: user.id}]
+               }
+            }
+        })
+        revalidatePath('/articles')
+        revalidatePath('/dashboard')
+        revalidatePath('/dashboard/articles')
+        return {
+            articleId: article.id,
+            success: true
+        }       
+    }
     return {
-        articleId: 1,
-        success: true
+        error: true
     }
 })
 

@@ -17,7 +17,7 @@ model Article {
   body          String
   category      String
   publishedAt   DateTime  @default(now()) @map(name: "created_at")
-  authors       User[] 
+  authors       User[]
   comments      Comment[]  
   likes         Like[]      
 }

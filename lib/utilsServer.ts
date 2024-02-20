@@ -1,6 +1,7 @@
 import { requestConfig } from "@/config/request";
 import { Article, Comment, Like } from "@/lib/validation";
 import prisma from "./prisma";
+import { auth, currentUser } from "@clerk/nextjs";
 
 export async function getAuthors() {
     return await prisma.user.findMany({
@@ -110,4 +111,32 @@ export async function getMetrics() {
         comments: await prisma.comment.count(),
         likes: await prisma.like.count()
     }
+}
+
+export async function getUserAndCreateIfHeNotExist() {
+  const clerkUser = await currentUser();
+ 
+  if (!clerkUser) return null
+
+  const user = await prisma.user.findFirst({
+    where: {
+        id: clerkUser.id
+    },
+    include: {
+        articles: true
+    }
+  })
+
+  if(user) return user
+
+  return await prisma.user.create({
+    data: {
+        id: clerkUser.id,
+        name: `${clerkUser.username} ${clerkUser.firstName} ${clerkUser.lastName}`,
+        image: clerkUser.imageUrl,
+    },
+    include: {
+        articles: true
+    }
+  })
 }

@@ -2,7 +2,7 @@
 
 import React from "react"
 import EditorJS from "@editorjs/editorjs"
-import { Article } from "@/lib/validation"
+import { Article, bodySchema } from "@/lib/validation"
 import { EditorHeader } from "./header"
 import { useToast } from "@/components/ui/use-toast"
 import { useAction } from "next-safe-action/hooks"
@@ -48,17 +48,7 @@ export function Editor({ article }: EditorProps) {
         const LinkTool = (await import("@editorjs/link")).default
 
     
-        if (!editorRef.current) {
-          const data  = {
-            "time":1708430429202,
-            "blocks":[{
-                "id":"9H3PxLZJNY",
-                "type":"paragraph",
-                "data":{ "text": article.body }
-            }],
-            "version":"2.29.0"
-          }
-          
+        if (!editorRef.current) {  
           const editor = new EditorJS({
             holder: "editor",
             onReady() {
@@ -66,7 +56,7 @@ export function Editor({ article }: EditorProps) {
             },
             placeholder: "Write your article...",
             inlineToolbar: true,
-            data: data,
+            data: bodySchema.parse(article.body),
             tools: {
               header: Header,
               linkTool: LinkTool,

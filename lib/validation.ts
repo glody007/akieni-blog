@@ -68,6 +68,8 @@ export const articlePostCommentSchema = z.object({
     body: z.string().min(1)
 })
 
+export const bodySchema = z.any()
+
 export const articlePostLikeSchema = z.object({
     articleId: z.string()
 })
