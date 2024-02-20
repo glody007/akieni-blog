@@ -141,11 +141,42 @@ export const updateArticleTitle = action(articleTitleUpdateSchema, async ({ arti
 })
 
 export const postComment = action(articlePostCommentSchema, async ({ articleId, body }) => {
-    revalidatePath(`/articles/${articleId}`)
-    return 'success'
+    const user = await getUserAndCreateIfHeNotExist()
+    if(user) {
+        await prisma.comment.create({
+            data: {
+                body: body,
+                articleId: articleId,
+                userId: user.id
+            }
+        })
+        revalidatePath(`/articles/${articleId}`)
+        return {
+            success: true
+        }
+    } else {
+        return {
+            error: true
+        }
+    }
 })
 
 export const toggleLike = action(articlePostLikeSchema, async ({ articleId }) => {
-    revalidatePath(`/articles/${articleId}`)
-    return 'success'
+    const user = await getUserAndCreateIfHeNotExist()
+    if(user) {
+        await prisma.like.create({
+            data: {
+                articleId: articleId,
+                userId: user.id
+            }
+        })
+        revalidatePath(`/articles/${articleId}`)
+        return {
+            success: true
+        }
+    } else {
+        return {
+            error: true
+        }
+    }
 })

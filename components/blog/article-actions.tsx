@@ -22,13 +22,13 @@ export async function ArticleActions({ id }: Props) {
             <div className="flex items-center gap-2">
                 <LikeButton articleId={id} />
                 <LikeList articleId={id}> 
-                    <p>{interactions.comments.length}</p>
+                    <p>{interactions.likes.length}</p>
                 </LikeList>
             </div>
             <Comment articleId={id}>
                 <div className="flex items-center gap-2">
                     <Icons.message className="w-5 h-5" />
-                    <p>{interactions.likes.length}</p>
+                    <p>{interactions.comments.length}</p>
                 </div>
             </Comment>
         </div>
