@@ -50,6 +50,7 @@ export const updateArticleBody = action(articleBodyUpdateSchema, async ({ articl
     revalidatePath('/articles')
     revalidatePath(`/articles/${articleId}`)
     revalidatePath('/dashboard/articles')
+    revalidatePath(`/editor/${articleId}`)
     return 'success'
 })
 
@@ -57,6 +58,7 @@ export const updateArticleTitle = action(articleTitleUpdateSchema, async ({ arti
     revalidatePath('/articles')
     revalidatePath(`/articles/${articleId}`)
     revalidatePath('/dashboard/articles')
+    revalidatePath(`/editor/${articleId}`)
     return 'success'
 })
 
