@@ -23,11 +23,19 @@ type Form = z.infer<typeof emailPostSchema>
 export function SubscribeForm() {
   const { toast } = useToast()
 
+  const form = useForm<Form>({
+    resolver: zodResolver(emailPostSchema),
+    defaultValues: {
+      email: "",
+    },
+  })
+
   const { execute, status } = useAction(subscribe, {
     onSuccess: () => {
         toast({
             description: "Your subscription has been registered.",
         })
+        form.reset()
     },
     onError: () => {
         toast({
@@ -35,13 +43,6 @@ export function SubscribeForm() {
             variant: "destructive"
         })
     }
-  })
-
-  const form = useForm<Form>({
-    resolver: zodResolver(emailPostSchema),
-    defaultValues: {
-      email: "",
-    },
   })
 
   const isLoading = status === "executing"
