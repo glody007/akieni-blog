@@ -164,16 +164,38 @@ export const postComment = action(articlePostCommentSchema, async ({ articleId, 
 export const toggleLike = action(articlePostLikeSchema, async ({ articleId }) => {
     const user = await getUserAndCreateIfHeNotExist()
     if(user) {
-        await prisma.like.create({
-            data: {
+        revalidatePath(`/articles/${articleId}`)
+        
+        const like = await prisma.like.findFirst({
+            where: {
                 articleId: articleId,
                 userId: user.id
             }
         })
-        revalidatePath(`/articles/${articleId}`)
-        return {
-            success: true
+
+        if(like) {
+            await prisma.like.delete({
+                where: {
+                    id: like.id
+                }
+            })
+            return {
+                success: true,
+                message: "Disliked"
+            }
+        } else {
+            await prisma.like.create({
+                data: {
+                    articleId: articleId,
+                    userId: user.id
+                }
+            })
+            return {
+                success: true,
+                message: "liked"
+            }
         }
+
     } else {
         return {
             error: true

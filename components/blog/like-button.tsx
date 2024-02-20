@@ -24,9 +24,9 @@ export function LikeButton({ articleId }: Props) {
     const { isSignedIn } = useAuth()
 
     const { execute, status } = useAction(toggleLike, {
-        onSuccess: () => {
+        onSuccess: (data) => {
             toast({
-                description: "Liked successfully",
+                description: data.message,
             })
         },
         onError: () => {
