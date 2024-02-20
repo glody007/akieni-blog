@@ -72,6 +72,12 @@ This is a blog built with everything new in Next.js 14.
    npx prisma db push
    ```
 
+6. Manage your database data(add, remove, update) with prisma studio
+
+   ```bash
+   npx prisma studio
+   ```
+
 ## How do I test?
 
 1. Populate your db
