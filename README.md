@@ -70,6 +70,17 @@ This is a blog built with everything new in Next.js 14.
    npx prisma db push
    ```
 
+## How do I test?
+
+1. Populate your db
+
+2. Run the command below
+
+   ```bash
+   pnpm exec playwright test
+   ```
+
+
 ## How do I deploy this?
 
 Follow the deployment guides for [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
