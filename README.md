@@ -17,6 +17,8 @@ This is a blog built with everything new in Next.js 14.
 - **Form** [React Useform](https://react-hook-form.com/)
 - **Query** [Tanstack Query](https://tanstack.com/query/latest)
 - **Typesafe server actions** [Next safe action](https://next-safe-action.dev/)
+- **Env variables validation** [T3 Env](https://env.t3.gg/docs/introduction)
+- **Test** [Playwright](https://playwright.dev/)
 
 ## Features to be implemented
 
