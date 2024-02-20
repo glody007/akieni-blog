@@ -1,0 +1,65 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL") 
+}
+
+model Article {
+  id            String     @default(cuid()) @id
+  title         String
+  image         String?
+  description   String
+  body          String
+  category      String
+  publishedAt   DateTime  @default(now()) @map(name: "created_at")
+  authors       User[] 
+  comments      Comment[]  
+  likes         Like[]      
+}
+
+model User {
+  id            String       @default(cuid()) @id
+  name          String
+  image         String
+  author        Boolean   @default(false)
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  articles      Article[]
+  comments      Comment[]
+  likes         Like[]    
+
+  @@map(name: "users")
+}
+
+model Comment {
+  id            String     @default(cuid()) @id
+  body          String
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+
+  articleId     String
+  userId        String 
+
+  author        User        @relation(fields: [userId], references: [id])
+  article       Article   @relation(fields: [articleId], references: [id])  
+}
+
+model Like {
+  id            String     @default(cuid()) @id
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+
+  articleId     String
+  userId        String 
+
+  author        User        @relation(fields: [userId], references: [id])
+  article       Article   @relation(fields: [articleId], references: [id])  
+}
+
+model Subscription {
+  id            String    @default(cuid()) @id
+  email         String    @unique()
+  createdAt     DateTime  @default(now()) @map(name: "created_at")  
+}

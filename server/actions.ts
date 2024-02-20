@@ -1,6 +1,7 @@
 "use server"
 
 import { requestConfig } from "@/config/request"
+import prisma from "@/lib/prisma"
 import { action } from "@/lib/safe-action"
 import { getArticleInteractions, getArticles, getArticlesPages } from "@/lib/utilsServer"
 import { articleBodyUpdateSchema, articlePostCommentSchema, articlePostLikeSchema, articleTitleUpdateSchema, emailPostSchema } from "@/lib/validation"
@@ -35,8 +36,21 @@ export async function getArticleComments(articleId: string) {
 } 
 
 export const subscribe = action(emailPostSchema, async ({ email }) => {
-    revalidatePath('/dashboard/newsletter')
-    return 'success'
+    try {
+        await prisma.subscription.create({
+            data: {
+                email
+            }
+        })
+        revalidatePath('/dashboard/newsletter')
+        return {
+            success: true
+        }
+    } catch {
+        return {
+            error: true
+        }
+    }
 })
 
 export const createArticle = action(z.object({}), async () => {
@@ -50,19 +64,51 @@ export const createArticle = action(z.object({}), async () => {
 })
 
 export const updateArticleBody = action(articleBodyUpdateSchema, async ({ articleId, body }) => {
-    revalidatePath('/articles')
-    revalidatePath(`/articles/${articleId}`)
-    revalidatePath('/dashboard/articles')
-    revalidatePath(`/editor/${articleId}`)
-    return 'success'
+    try {
+        await prisma.article.update({
+            where: {
+                id: articleId
+            },
+            data: {
+                body: JSON.stringify(body)
+            }
+        })
+        revalidatePath('/articles')
+        revalidatePath(`/articles/${articleId}`)
+        revalidatePath('/dashboard/articles')
+        revalidatePath(`/editor/${articleId}`)
+        return {
+            success: true
+        }
+    } catch {
+        return {
+            error: true
+        }
+    }
 })
 
 export const updateArticleTitle = action(articleTitleUpdateSchema, async ({ articleId, title }) => {
-    revalidatePath('/articles')
-    revalidatePath(`/articles/${articleId}`)
-    revalidatePath('/dashboard/articles')
-    revalidatePath(`/editor/${articleId}`)
-    return 'success'
+    try {
+        await prisma.article.update({
+            where: {
+                id: articleId
+            },
+            data: {
+                title: title
+            }
+        })
+        revalidatePath('/articles')
+        revalidatePath(`/articles/${articleId}`)
+        revalidatePath('/dashboard/articles')
+        revalidatePath(`/editor/${articleId}`)
+        return {
+            success: true
+        }
+    } catch {
+        return {
+            error: true
+        }
+    }
 })
 
 export const postComment = action(articlePostCommentSchema, async ({ articleId, body }) => {

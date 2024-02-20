@@ -31,10 +31,17 @@ export function SubscribeForm() {
   })
 
   const { execute, status } = useAction(subscribe, {
-    onSuccess: () => {
-        toast({
+    onSuccess: (data) => {
+        if(data.success) {
+          toast({
             description: "Your subscription has been registered.",
-        })
+          })
+        } else {
+          toast({
+            description: "Email already registered",
+            variant: "destructive"
+          })
+        }
         form.reset()
     },
     onError: () => {
