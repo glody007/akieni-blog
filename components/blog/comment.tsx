@@ -1,8 +1,6 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -14,6 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { CommentList } from "./comment-list"
+import { AddCommentFormWithLogin } from "./add-comment-form"
 
 interface CommentProps {
   articleId: string
@@ -42,7 +41,8 @@ export function Comment({ articleId, children }: CommentProps) {
         <SheetHeader>
           <SheetTitle>Responses</SheetTitle>
         </SheetHeader>
-        <div className="pt-4">
+        <div className="flex flex-col gap-4 pt-4">
+          <AddCommentFormWithLogin articleId={articleId} />
           <CommentList articleId={articleId} />
         </div>
       </SheetContent>

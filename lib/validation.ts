@@ -65,7 +65,7 @@ export const articleTitleUpdateSchema = z.object({
 
 export const articlePostCommentSchema = z.object({
     articleId: z.string(),
-    body: z.string()
+    body: z.string().min(1)
 })
 
 export const articlePostLikeSchema = z.object({
