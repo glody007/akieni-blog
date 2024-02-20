@@ -43,7 +43,10 @@ export const createArticle = action(z.object({}), async () => {
     revalidatePath('/articles')
     revalidatePath('/dashboard')
     revalidatePath('/dashboard/articles')
-    return 'success'
+    return {
+        articleId: 1,
+        success: true
+    }
 })
 
 export const updateArticleBody = action(articleBodyUpdateSchema, async ({ articleId, body }) => {
