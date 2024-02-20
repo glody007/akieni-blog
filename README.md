@@ -74,7 +74,7 @@ This is a blog built with everything new in Next.js 14.
 
 1. Populate your db
 
-2. Run the command below
+2. Run the end to end testing
 
    ```bash
    pnpm exec playwright test
