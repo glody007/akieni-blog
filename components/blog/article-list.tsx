@@ -25,7 +25,7 @@ export function ArticleList({  }: ArticlesProps) {
 
     return (
         <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-8 lg:gap-20 lg:grid lg:grid-cols-2">
+            <div className="flex flex-col gap-8 lg:gap-20 lg:grid lg:grid-cols-2" data-testid="list">
                 {response.pages.map((group, i) => (
                     <React.Fragment key={i}>
                         {group.data.map((article) => (

@@ -57,7 +57,7 @@ export function AccountMenu() {
           </DropdownMenu>
         ) : (
           <Button size="sm" variant="secondary" onClick={signIn}>
-            SignIn
+            Sign In
           </Button>
         )}
       </div>
