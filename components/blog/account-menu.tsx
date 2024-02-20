@@ -16,17 +16,20 @@ import {
 } from "@/components/ui/avatar"
 import { Icons } from "@/components/icons"
 import Link from "next/link"
-import { useAuth } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import { Button } from "../ui/button"
 import { useRouter } from "next/navigation"
   
 export function AccountMenu() {
     const { isSignedIn, signOut } = useAuth()
+    const { user } = useUser()
     const router = useRouter()
 
     const signIn = () => {
       router.push("dashboard")
     }
+
+    if(!user) return <div>...</div>
 
     return (
       <div className="flex gap-2">
@@ -34,12 +37,12 @@ export function AccountMenu() {
           <DropdownMenu>
             <DropdownMenuTrigger className="cursor-pointer" asChild>
                 <Avatar>
-                    <AvatarImage src="https://avatars.githubusercontent.com/u/25279896?v=4" alt="@techalchemist" />
-                    <AvatarFallback>AL</AvatarFallback>
+                    <AvatarImage src={user.imageUrl} alt={user.username || ""} />
+                    <AvatarFallback>{user.username}</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56 mr-4">
-              <DropdownMenuLabel className="font-light mb-2">techalchemist@gmail.com</DropdownMenuLabel>
+              <DropdownMenuLabel className="font-light mb-2">{user.emailAddresses[0].emailAddress}</DropdownMenuLabel>
               <DropdownMenuGroup>
                 <Link href='/dashboard'>
                     <DropdownMenuItem>

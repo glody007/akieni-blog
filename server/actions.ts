@@ -9,6 +9,7 @@ import { revalidatePath } from "next/cache"
 import { z } from "zod"
 import { auth, currentUser } from "@clerk/nextjs";
 import { ArticleList } from "@/components/dashboard/article-list"
+import { format } from "date-fns"
 
 export async function getPaginatedArticles(currentPage: number) {
     const allArticles = await getArticles()
@@ -70,7 +71,7 @@ export const createArticle = action(z.object({}), async () => {
     if(user) {
         const article = await prisma.article.create({
             data: {
-               title: `Draft ${new Date()}`,
+               title: `Draft ${format(new Date(), "yyyy-mm-dd hh:mm:ss")}`,
                description: "",
                body: JSON.stringify(defaultData),
                category: "category",
@@ -165,7 +166,7 @@ export const toggleLike = action(articlePostLikeSchema, async ({ articleId }) =>
     const user = await getUserAndCreateIfHeNotExist()
     if(user) {
         revalidatePath(`/articles/${articleId}`)
-        
+
         const like = await prisma.like.findFirst({
             where: {
                 articleId: articleId,
