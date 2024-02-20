@@ -67,7 +67,7 @@ export const postComment = action(articlePostCommentSchema, async ({ articleId, 
     return 'success'
 })
 
-export const like = action(articlePostLikeSchema, async ({ articleId }) => {
+export const toggleLike = action(articlePostLikeSchema, async ({ articleId }) => {
     revalidatePath(`/articles/${articleId}`)
     return 'success'
 })
