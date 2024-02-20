@@ -12,11 +12,11 @@ export function ArticleDetailsHeader({ article }: Props) {
                 <div className="bg-muted text-foreground rounded-2xl px-3 py-2">
                     {article.category}
                 </div>
-                <div>
+                <div data-testid="date">
                     {format(article.publishedAt, "EEEE, MMMM io yyyy")}
                 </div>
             </div>
-            <h1 className="text-3xl lg:text-5xl font-bold first-letter:uppercase">
+            <h1 className="text-3xl lg:text-5xl font-bold first-letter:uppercase" data-testid="title">
                 {article.title}
             </h1>
             <h2 className="text-lg lg:text-xl text-muted-foreground">{article.description}</h2>

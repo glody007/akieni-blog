@@ -38,7 +38,7 @@ export default async function ArticlePage({ params }: Props) {
                     <ArticleDetailsHeader article={article} />
                 </div>
                 <div className="flex flex-col gap-16 lg:gap-0 lg:grid lg:grid-cols-[1fr_280px] lg:min-h-screen lg:divide-x">
-                    <div className="lg:pr-8">
+                    <div className="lg:pr-8" data-testid="body">
                         {article.body}
                     </div>
                     <div className="flex flex-col gap-8 lg:pl-4">
