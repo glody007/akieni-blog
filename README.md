@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [Akienist]()
 
-## Getting Started
+This is a blog built with everything new in Next.js 14. 
 
-First, run the development server:
+[![Akienist](./public/images/screenshot.png)]()
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework:** [Next.js](https://nextjs.org)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com)
+- **User Management:** [Clerk](https://clerk.com)
+- **ORM:** [Prisma](https://www.prisma.io/)
+- **UI Components:** [shadcn/ui](https://ui.shadcn.com)
+- **Content Management:** [Jsonplaceholder](https://jsonplaceholder.typicode.com/)
+- **Validation** [Zod](https://zod.dev/)
+- **Form** [React Useform](https://react-hook-form.com/)
+- **Query** [Tanstack Query](https://tanstack.com/query/latest)
+- **Typesafe server actions** [Next safe action](https://next-safe-action.dev/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features to be implemented
 
-## Learn More
+- [x] Authentication with **Clerk**
+- [x] Api Using **Jsonplaceholder**
+- [x] Validation with **Zod**
+- [x] Blog with articles, authors, related, featured, likes, and comments
+- [x] Admin dashboard with articles, users, comments, likes and authors
+- [x] Server-side rendering(SSR) pagination and search on the dashboard
+- [x] Partial prerendering(PPR) for dashboard and blog shell
+- [x] Incremental static regeneration(ISR) for articles details
+- [x] Infinite loading with the first page prerendered with **Tanstack query**
+- [ ] Optimistic update to post comment **Next safe action**
+- [ ] Test with **Playwright** and **Jest**
+- [ ] ORM using **Prisma ORM**
+- [ ] Database on **Railway**
+- [ ] Newsletter subscription with **React Email** and **Resend**
+- [ ] Image uploads with **Uploadthing**
+- [ ] Retrial augmented generation(RAG) to enable chat with the article using  **Vercel ai**
+- [ ] Post generation using LLM
+  
+## Running Locally
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git clone https://github.com/glody007/akieni-blog
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Install dependencies using pnpm
 
-## Deploy on Vercel
+   ```bash
+   pnpm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Copy the `.env.example` to `.env` and update the variables.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Start the development server
+
+   ```bash
+   pnpm run dev
+   ```
+
+5. Push the database schema
+
+   ```bash
+   npx prisma db push
+   ```
+
+## How do I deploy this?
+
+Follow the deployment guides for [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
