@@ -30,7 +30,7 @@ This is a blog built with everything new in Next.js 14.
 - [x] Incremental static regeneration(ISR) for articles details
 - [x] Infinite loading with the first page prerendered with **Tanstack query**
 - [ ] Optimistic update to post comment **Next safe action**
-- [ ] Test with **Playwright** and **Jest**
+- [x] Test with **Playwright**
 - [ ] ORM using **Prisma ORM**
 - [ ] Database on **Railway**
 - [ ] Newsletter subscription with **React Email** and **Resend**
