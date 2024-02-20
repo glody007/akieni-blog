@@ -10,6 +10,9 @@ import { Icons } from "@/components/icons"
 import { useToast } from "@/components/ui/use-toast"
 import { toggleLike } from "@/server/actions"
 import { useAction } from "next-safe-action/hooks"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@clerk/nextjs"
+import { generateAfterAuthRedirectionLink } from "@/lib/utils"
 
 interface Props {
     articleId: string
@@ -17,6 +20,8 @@ interface Props {
 
 export function LikeButton({ articleId }: Props) {
     const { toast } = useToast()
+    const router = useRouter()
+    const { isSignedIn } = useAuth()
 
     const { execute, status } = useAction(toggleLike, {
         onSuccess: () => {
@@ -32,11 +37,20 @@ export function LikeButton({ articleId }: Props) {
         }
     })
 
+    const like = () => {
+        if(isSignedIn) {
+            execute({ articleId })
+        } else {
+            const authLink = generateAfterAuthRedirectionLink(window.location.href)
+            router.push(authLink)
+        }
+    }
+
     return (
         <TooltipProvider>
             <Tooltip>
             <TooltipTrigger asChild>
-                <button onClick={() => execute({ articleId })}>
+                <button onClick={like}>
                     <Icons.heart className="w-5 h-5" />
                 </button>
             </TooltipTrigger>
