@@ -16,6 +16,7 @@ This is a blog built with everything new in Next.js 14.
 - **Validation** [Zod](https://zod.dev/)
 - **Form** [React Useform](https://react-hook-form.com/)
 - **Query** [Tanstack Query](https://tanstack.com/query/latest)
+- **File Uploads:** [uploadthing](https://uploadthing.com)
 - **Typesafe server actions** [Next safe action](https://next-safe-action.dev/)
 - **Env variables validation** [T3 Env](https://env.t3.gg/docs/introduction)
 - **Test** [Playwright](https://playwright.dev/)
@@ -36,7 +37,7 @@ This is a blog built with everything new in Next.js 14.
 - [x] Database on **Railway**
 - [x] Newsletter subscription with **React Email** and **Resend**
 - [ ] Optimistic update to post comment **Next safe action**
-- [ ] Image uploads with **Uploadthing**
+- [x] Image uploads with **Uploadthing**
 - [ ] Retrial augmented generation(RAG) to enable chat with the article using  **Vercel ai**
 - [ ] Post generation using LLM
   
