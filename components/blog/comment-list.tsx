@@ -4,6 +4,7 @@ import { useGetComments } from "@/data/get-comments"
 import { Comment as CommentType } from "@/lib/validation"
 import { formatDistance } from "date-fns"
 import { AuthorBadgeList } from "../author-badge-list"
+import { DetailSkeleton } from "../skeletons"
 
 interface Props {
     articleId: string
@@ -12,7 +13,7 @@ interface Props {
 export function CommentList({ articleId }: Props) {
     const {data, isLoading} = useGetComments(articleId)
 
-    if(isLoading) return <div>Loading...</div>
+    if(isLoading) return <DetailSkeleton />
 
     if(!data) return <div>Error</div>
 
