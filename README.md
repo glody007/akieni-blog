@@ -40,6 +40,7 @@ This is a blog built with everything new in Next.js 14.
 - [x] Image uploads with **Uploadthing**
 - [ ] Retrial augmented generation(RAG) to enable chat with the article using  **Vercel ai**
 - [ ] Post generation using LLM
+- [x] Opengraph-image
   
 ## Running Locally
 
