@@ -22,9 +22,23 @@ export async function getArticles() {
 }
 
 export async function getFeaturedArticles() {
-    const allArticles = await getArticles()
-    if(allArticles.length < 6) return []
-    return allArticles.slice(0, 5)
+    const count = await prisma.article.count({
+        where: {
+            NOT: {
+                image: null
+            }
+        }
+    })
+    if(count < 6) return []
+    const featured = await prisma.article.findMany({
+        where: {
+            NOT: {
+                image: null
+            }
+        },
+        take: 5
+    })
+    return featured
 }
 
 export async function getRelatedArticles(articleId: string) {
@@ -107,6 +121,7 @@ export async function getFilteredArticles(query: string, currentPage: number) {
 export async function getMetrics() {
     return {
         articles: await prisma.article.count(),
+        users: await  prisma.user.count(),
         authors: await  prisma.user.count({ where: { author: true }}),
         comments: await prisma.comment.count(),
         likes: await prisma.like.count()
