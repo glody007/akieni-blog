@@ -3,6 +3,7 @@ import { CreateArticleButton } from "@/components/dashboard/create-article-butto
 import Pagination from "@/components/dashboard/pagination";
 import Search from "@/components/dashboard/search";
 import { DashboardShell } from "@/components/dashboard/shell";
+import { CardListSkeleton } from "@/components/skeletons";
 import { getArticlesPages } from "@/lib/utilsServer";
 import { Suspense } from "react";
 
@@ -30,7 +31,7 @@ export default async function ArticlesPage({
             <div className="w-full flex items-center gap-2 md:w-[300px]">
                 <Search placeholder="Search articles..." />
             </div>
-            <Suspense key={query + currentPage} fallback={<div>Loading...</div>}>
+            <Suspense key={query + currentPage} fallback={<CardListSkeleton />}>
                 <ArticleList query={query} currentPage={currentPage}  />
             </Suspense>
             <div className="flex w-full justify-center">

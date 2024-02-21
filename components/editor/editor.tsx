@@ -7,6 +7,7 @@ import { EditorHeader } from "./header"
 import { useToast } from "@/components/ui/use-toast"
 import { useAction } from "next-safe-action/hooks"
 import { updateArticleBody } from "@/server/actions"
+import { ImageUpload } from "./image-upload"
 
 interface EditorProps {
     article: Article
@@ -96,10 +97,11 @@ export function Editor({ article }: EditorProps) {
 
     return (
         <div className="flex flex-col gap-8 md:gap-16 min-h-screen">
-            <div className="sticky top-0 border-b">
+            <div className="z-50 sticky top-0 border-b">
                 <EditorHeader article={article} isSaving={isLoading} handleSave={save} />
             </div>
-            <div className="mx-auto w-full flex flex-col gap-16 max-w-5xl p-4">
+            <div className="z-0 mx-auto w-full flex flex-col gap-16 max-w-5xl p-4">
+                <ImageUpload article={article} />
                 <div id="editor" className="min-h-[500px]" />
             </div>
         </div>

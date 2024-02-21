@@ -16,7 +16,7 @@ export function FeaturedArticle({ article, className }: FeaturedArticleItemProps
             {article.image && (
                 <div className="absolute inset-0">
                     <div className="relative h-full w-full -z-50">
-                        <Image fill src={article.image} alt={article.title} />
+                        <Image objectFit="cover" fill src={article.image} alt={article.title} />
                     </div>
                 </div>
             )}

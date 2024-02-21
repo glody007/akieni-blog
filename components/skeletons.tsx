@@ -22,6 +22,21 @@ export function CardSkeleton() {
     )
 }
 
+export function CardListSkeleton() {
+  return (
+    <div className="flex flex-col gap-8 lg:gap-20 lg:grid lg:grid-cols-2">
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+        <CardSkeleton />
+    </div>
+  )
+}
+
 export function EditorSkeleton() {
   return (
     <div className="grid w-full gap-10">

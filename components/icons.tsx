@@ -21,6 +21,8 @@ import {
     Handshake,
     Save,
     Search,
+    Pencil,
+    Image,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -46,5 +48,7 @@ export const Icons = {
     message: MessageCircle,
     handShake: Handshake,
     save: Save,
-    search: Search
+    search: Search,
+    update: Pencil,
+    picture: Image
 }

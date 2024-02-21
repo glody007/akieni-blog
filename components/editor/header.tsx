@@ -15,7 +15,7 @@ interface EditorHeaderProps extends React.HTMLAttributes<HTMLHeadingElement> {
 export function EditorHeader({ isSaving, handleSave, article, className }: EditorHeaderProps) {
     return (
         <header className={cn(
-            "flex items-center justify-between p-4",
+            "flex items-center justify-between p-4 bg-background",
             className
         )}>
             <div className="w-[50%] overflow-ellipsis flex items-center gap-2">
