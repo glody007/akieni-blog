@@ -99,7 +99,7 @@ export function Editor({ article }: EditorProps) {
             <div className="sticky top-0 border-b">
                 <EditorHeader article={article} isSaving={isLoading} handleSave={save} />
             </div>
-            <div className="w-full flex flex-col gap-16 max-w-5xl p-4">
+            <div className="mx-auto w-full flex flex-col gap-16 max-w-5xl p-4">
                 <div id="editor" className="min-h-[500px]" />
             </div>
         </div>
