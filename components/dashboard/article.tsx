@@ -11,7 +11,7 @@ interface ArticleItemProps extends HTMLAttributes<HTMLElement> {
 
 export function Article({ article, className }: ArticleItemProps) {
     return (
-        <Link href={`/editor/${article.id}`} className={cn("flex flex-col gap-4 justify-between border rounded p-4 hover:shadow-md", className)}>
+        <Link href={`/editor/${article.id}`} className={cn("flex flex-col gap-4 justify-between border rounded p-4 bg-background hover:shadow-md", className)}>
             <h1 className="text-lg font-semibold">{article.title}</h1>
             <div className="flex justify-between items-center">
                 <div className="w-[50%] flex gap-2">

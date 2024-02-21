@@ -18,7 +18,7 @@ export function DashboardNav({ items, className }: DashboardNavProps) {
     const segment = useSelectedLayoutSegment()
     
     return  (
-        <div className={cn("flex flex-col justify-between border shadow-2xl p-4 bg-background", className)}>
+        <div className={cn("z-20 flex flex-col justify-between border shadow-2xl p-4 bg-gradient-to-b from-yellow-100/15 to-background", className)}>
             <div className="hidden lg:flex flex-col gap-10">
                 <div className="flex justify-center p-2">
                     <Link href="/" className="flex flex-col items-center gap-2">
