@@ -31,7 +31,7 @@ export default async function ArticlePage({ params }: Props) {
     if(!article) return notFound()
 
     return (
-        <div className="min-h-screen flex flex-col items-center p-4 pb-16">
+        <div className="min-h-screen flex flex-col items-center p-4 pb-16 bg-gradient-to-b from-cyan-100/25 to-background">
             <div className="w-full flex flex-col gap-10 lg:gap-16 max-w-6xl">
                 <Link href="/" className="flex items-center cursor-pointer text-sm text-muted-foreground font-light hover:text-foreground">
                     <Icons.arrowLeft className="w-4 h-4 mr-2" />
