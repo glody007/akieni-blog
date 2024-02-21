@@ -3,6 +3,8 @@ import { ArticleAuthorList } from "@/components/blog/article-author-list";
 import { ArticleDetailsHeader } from "@/components/blog/article-details-header";
 import { RelatedArticleList } from "@/components/blog/related-article-list";
 import { Icons } from "@/components/icons";
+import { DetailSkeleton } from "@/components/skeletons";
+import { Skeleton } from "@/components/ui/skeleton";
 import { getArticle, getArticles } from "@/lib/utilsServer"
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -52,14 +54,14 @@ export default async function ArticlePage({ params }: Props) {
                             <p className="text-sm text-muted-foreground font-light">
                                 Related Articles
                             </p>
-                            <Suspense fallback={(<div>Loading...</div>)}>
+                            <Suspense fallback={(<DetailSkeleton />)}>
                                 <RelatedArticleList article={article} />
                             </Suspense>
                         </div>
                     </div>
                 </div>
                 <div className="grid lg:grid-cols-[1fr_280px]">
-                    <Suspense fallback={(<div>Loading...</div>)}>
+                    <Suspense fallback={(<Skeleton />)}>
                         <ArticleActions id={article.id} />
                     </Suspense>
                 </div>

@@ -1,7 +1,7 @@
-import { ArticleSkeleton } from "@/components/skeletons";
+import { EditorSkeleton } from "@/components/skeletons";
     
 export default async function Loading() {
     return (
-      <ArticleSkeleton />
+      <EditorSkeleton />
     );
 }

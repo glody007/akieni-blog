@@ -1,6 +1,6 @@
 
 import { DashboardShell } from "@/components/dashboard/shell";
-import { DetailSkeleton } from "@/components/skeletons";
+import { CardSkeleton, DetailSkeleton } from "@/components/skeletons";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
     
 export default async function DashboardLoading() {
@@ -10,19 +10,19 @@ export default async function DashboardLoading() {
           <div className="flex flex-col gap-4">
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
               <div>
-                <DetailSkeleton />
+                <CardSkeleton />
               </div>
               <div>
-                <DetailSkeleton />
+                <CardSkeleton />
               </div>
               <div>
-                <DetailSkeleton />
+                <CardSkeleton />
               </div>
               <div>
-              <DetailSkeleton />
+                <CardSkeleton />
               </div>
             </div>
-            <DetailSkeleton />
+            <CardSkeleton />
           </div>
           <Card>
             <CardHeader>
