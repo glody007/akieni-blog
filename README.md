@@ -1,8 +1,8 @@
-# [Akienist](https://akieni-blog-o89j.vercel.app/)
+# [Akienist](https://akieni-blog.vercel.app/)
 
 This is a blog built with everything new in Next.js 14. 
 
-[![Akienist](./public/images/screenshot.png)](https://akieni-blog-o89j.vercel.app/)
+[![Akienist](./public/images/screenshot.png)](https://akieni-blog.vercel.app/)
 
 
 ## Tech Stack
