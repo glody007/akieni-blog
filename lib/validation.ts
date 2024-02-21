@@ -64,6 +64,11 @@ export const articleTitleUpdateSchema = z.object({
     title: z.string()
 })
 
+export const articleImageUpdateSchema = z.object({
+    articleId: z.string(),
+    imageUrl: z.string()
+})
+
 export const articlePostCommentSchema = z.object({
     articleId: z.string(),
     body: z.string().min(1)

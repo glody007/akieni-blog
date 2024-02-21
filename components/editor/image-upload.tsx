@@ -13,6 +13,10 @@ import { Article } from "@/lib/validation"
 import Image from "next/image"
 import { Icons } from "../icons"
 import { useState } from "react"
+import { UploadDropzone } from "@/lib/uploadthing"
+import { useToast } from "../ui/use-toast"
+import { useAction } from "next-safe-action/hooks"
+import { updateArticleImage } from "@/server/actions"
   
 interface Props {
     article: Article
@@ -20,6 +24,23 @@ interface Props {
   
 export function ImageUpload({ article }: Props) {
     const [open, setOpen] = useState(false)
+    const { toast } = useToast()
+
+    const { execute, status } = useAction(updateArticleImage, {
+        onSuccess: () => {
+            toast({
+                description: "Image updated",
+            })
+        },
+        onError: () => {
+            toast({
+                description: "Something went wrong.",
+                variant: "destructive"
+            })
+        }
+    })
+
+    const isLoading = status === "executing"
 
     return (
       <div> 
@@ -27,10 +48,34 @@ export function ImageUpload({ article }: Props) {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
-                <DialogTitle>Update article image</DialogTitle>
+                <DialogTitle>Update image</DialogTitle>
             </DialogHeader>
             <div>
-                content
+                {isLoading ? (
+                    <div className="flex justify-center">
+                        <Icons.loader className="w-4 h-4 animate-spin" />
+                    </div>
+                ) : (
+                    <UploadDropzone
+                        className="bg-accent ut-button:bg-black ut-button:px-2 ut-upload-icon:w-16"
+                        endpoint="imageUploader"
+                        onClientUploadComplete={(res) => {
+                            const data = res[0]
+                            execute({ 
+                                imageUrl: data.url, 
+                                articleId: article.id 
+                            })
+                        }}
+                        onUploadError={(error: Error) => {
+                            alert(`ERROR! ${error.message}`);
+                            toast({
+                                title: "Something went wrong.",
+                                description: error.message,
+                                variant: "destructive",
+                            })
+                        }}
+                    />
+                )}
             </div>
             </DialogContent>
         </Dialog>

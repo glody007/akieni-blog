@@ -4,7 +4,7 @@ import { requestConfig } from "@/config/request"
 import prisma from "@/lib/prisma"
 import { action } from "@/lib/safe-action"
 import { getArticleInteractions, getArticles, getArticlesPages, getUserAndCreateIfHeNotExist } from "@/lib/utilsServer"
-import { articleBodyUpdateSchema, articlePostCommentSchema, articlePostLikeSchema, articleTitleUpdateSchema, emailPostSchema } from "@/lib/validation"
+import { articleBodyUpdateSchema, articleImageUpdateSchema, articlePostCommentSchema, articlePostLikeSchema, articleTitleUpdateSchema, emailPostSchema } from "@/lib/validation"
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
 import { format } from "date-fns"
@@ -99,6 +99,30 @@ export const updateArticleBody = action(articleBodyUpdateSchema, async ({ articl
             },
             data: {
                 body: JSON.stringify(body)
+            }
+        })
+        revalidatePath('/articles')
+        revalidatePath(`/articles/${articleId}`)
+        revalidatePath('/dashboard/articles')
+        revalidatePath(`/editor/${articleId}`)
+        return {
+            success: true
+        }
+    } catch {
+        return {
+            error: true
+        }
+    }
+})
+
+export const updateArticleImage = action(articleImageUpdateSchema, async ({ articleId, imageUrl }) => {
+    try {
+        await prisma.article.update({
+            where: {
+                id: articleId
+            },
+            data: {
+                image: imageUrl
             }
         })
         revalidatePath('/articles')
