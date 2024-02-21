@@ -22,19 +22,19 @@ import { useRouter } from "next/navigation"
 import { Skeleton } from "../ui/skeleton"
   
 export function AccountMenu() {
-    const { isSignedIn, signOut } = useAuth()
-    const { user } = useUser()
+    const { signOut } = useAuth()
+    const { user, isLoaded } = useUser()
     const router = useRouter()
 
     const signIn = () => {
       router.push("dashboard")
     }
 
-    if(!user) return <Skeleton className="w-8 h-8 rounded-full" />
+    if(!isLoaded) return <Skeleton className="w-8 h-8 rounded-full" />
 
     return (
       <div className="flex gap-2">
-        {isSignedIn ? (
+        {user ? (
           <DropdownMenu>
             <DropdownMenuTrigger className="cursor-pointer" asChild>
                 <Avatar>
