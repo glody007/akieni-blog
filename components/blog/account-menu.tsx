@@ -19,6 +19,7 @@ import Link from "next/link"
 import { useAuth, useUser } from "@clerk/nextjs";
 import { Button } from "../ui/button"
 import { useRouter } from "next/navigation"
+import { Skeleton } from "../ui/skeleton"
   
 export function AccountMenu() {
     const { isSignedIn, signOut } = useAuth()
@@ -29,7 +30,7 @@ export function AccountMenu() {
       router.push("dashboard")
     }
 
-    if(!user) return <div>...</div>
+    if(!user) return <Skeleton className="w-8 h-8 rounded-full" />
 
     return (
       <div className="flex gap-2">
