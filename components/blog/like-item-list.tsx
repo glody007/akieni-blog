@@ -4,6 +4,7 @@ import { Like } from "@/lib/validation"
 import { formatDistance } from "date-fns"
 import { AuthorBadgeList } from "../author-badge-list"
 import { useGetLikes } from "@/data/get-likes"
+import { DetailSkeleton } from "../skeletons"
 
 interface Props {
     articleId: string
@@ -12,7 +13,7 @@ interface Props {
 export function LikeItemList({ articleId }: Props) {
     const {data, isLoading} = useGetLikes(articleId)
 
-    if(isLoading) return <div>Loading...</div>
+    if(isLoading) return <DetailSkeleton />
 
     if(!data) return <div>Error</div>
 
