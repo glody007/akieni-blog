@@ -31,11 +31,11 @@ This is a blog built with everything new in Next.js 14.
 - [x] Partial prerendering(PPR) for dashboard and blog shell
 - [x] Incremental static regeneration(ISR) for articles details
 - [x] Infinite loading with the first page prerendered with **Tanstack query**
-- [ ] Optimistic update to post comment **Next safe action**
 - [x] Test with **Playwright**
-- [ ] ORM using **Prisma ORM**
-- [ ] Database on **Railway**
-- [ ] Newsletter subscription with **React Email** and **Resend**
+- [x] ORM using **Prisma ORM**
+- [x] Database on **Railway**
+- [x] Newsletter subscription with **React Email** and **Resend**
+- [ ] Optimistic update to post comment **Next safe action**
 - [ ] Image uploads with **Uploadthing**
 - [ ] Retrial augmented generation(RAG) to enable chat with the article using  **Vercel ai**
 - [ ] Post generation using LLM
