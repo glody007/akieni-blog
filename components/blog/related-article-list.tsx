@@ -16,6 +16,9 @@ export async function RelatedArticleList({ article }: RelatedArticlesProps) {
             {articles.map((article, index) => (
                 <RelatedArticle key={index} article={article} />
             ))}
+            {articles.length === 0 && (
+                <p className="text-sm">No related articles</p>
+            )}
         </div>
     )
 }

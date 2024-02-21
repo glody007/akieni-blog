@@ -64,8 +64,8 @@ export async function getRelatedArticles(articleId: string) {
 
     if(user) {
         const author = user.authors[0]
-        if(author.articles.length > 3) return author.articles.slice(undefined, 3)
-        return author.articles
+        if(author.articles.length > 3) return author.articles.filter(article => article.id !== articleId).slice(undefined, 3)
+        return author.articles.filter(article => article.id !== articleId)
     }
     
     return await prisma.article.findMany({
