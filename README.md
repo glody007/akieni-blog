@@ -91,7 +91,7 @@ This is a blog built with everything new in Next.js 14.
 
 Follow the deployment guides for [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
 
-## Additional notes 
+## Notes 
 
 - To enable a user access to the dashboard his author's flag must be true in the user table
 - There must be at least 6 articles with images to show the featured section
@@ -133,3 +133,6 @@ Follow the deployment guides for [Vercel](https://vercel.com/new?utm_medium=defa
    |   |   ├── article.spec.ts
    |   |   |   ...
 ```
+
+## Commits style guide
+    - https://www.conventionalcommits.org/en/v1.0.0/
