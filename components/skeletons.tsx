@@ -24,8 +24,8 @@ export function CardSkeleton() {
 
 export function EditorSkeleton() {
   return (
-    <div className="grid w-full gap-10 py-16">
-      <div className="flex w-full items-center justify-between">
+    <div className="grid w-full gap-10">
+      <div className="flex w-full items-center justify-between p-4">
         <Skeleton className="h-[38px] w-[90px]" />
         <Skeleton className="h-[38px] w-[80px]" />
       </div>
