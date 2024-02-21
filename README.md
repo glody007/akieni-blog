@@ -96,4 +96,4 @@ Follow the deployment guides for [Vercel](https://vercel.com/new?utm_medium=defa
 ## Additional notes 
 
 - To enable a user access to the dashboard his author's flag must be true in the user table
-- There must be at least 10 articles to show the featured section
+- There must be at least 6 articles with images to show the featured section

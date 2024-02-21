@@ -22,8 +22,8 @@ export default async function DashboardPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
               <div>
                 <OverviewCard 
-                  title="Users" 
-                  description={metrics.authors.toString()}
+                  title="Active users" 
+                  description={metrics.users.toString()}
                   icon="user" 
                 />
               </div>
