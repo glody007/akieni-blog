@@ -7,6 +7,7 @@ import { Icons } from "@/components/icons";
 import { DetailSkeleton } from "@/components/skeletons";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getArticle, getArticles } from "@/lib/utilsServer"
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -39,6 +40,11 @@ export default async function ArticlePage({ params }: Props) {
                 </Link>
                 <div className="grid lg:grid-cols-[1fr_280px]">
                     <ArticleDetailsHeader article={article} />
+                    {article.image && (
+                        <div className="mt-4 border rounded lg:rounded lg:border-none lg:pt-0 relative min-h-[200px]">
+                            <Image src={article.image} fill objectFit="cover" alt={article.title} />
+                        </div>
+                    )}
                 </div>
                 <div className="flex flex-col gap-16 lg:gap-0 lg:grid lg:grid-cols-[1fr_280px] lg:min-h-screen lg:divide-x">
                     <div className="lg:pr-8" data-testid="body">

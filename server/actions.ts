@@ -70,7 +70,7 @@ export const createArticle = action(z.object({}), async () => {
         const article = await prisma.article.create({
             data: {
                title: `Draft ${format(new Date(), "yyyy-mm-dd hh:mm:ss")}`,
-               description: "",
+               description: "A simple description",
                body: JSON.stringify(defaultData),
                category: "category",
                authors: {
