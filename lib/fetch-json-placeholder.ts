@@ -56,6 +56,7 @@ export async function getArticles() {
       id: post.id.toString(),
       title: post.title,
       description: "lorem ipsum dolor",
+      image: null,
       body: post.body,
       category: "category",
       publishedAt: new Date(),
@@ -100,6 +101,7 @@ export async function getArticle(id: string) {
     const article:  Article = {
       id: post.id.toString(),
       title: post.title,
+      image: null,
       description: "lorem ipsum dolor",
       body: post.body,
       category: "category",
