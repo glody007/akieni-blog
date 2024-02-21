@@ -7,8 +7,6 @@ import { getArticleInteractions, getArticles, getArticlesPages, getUserAndCreate
 import { articleBodyUpdateSchema, articlePostCommentSchema, articlePostLikeSchema, articleTitleUpdateSchema, emailPostSchema } from "@/lib/validation"
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
-import { auth, currentUser } from "@clerk/nextjs";
-import { ArticleList } from "@/components/dashboard/article-list"
 import { format } from "date-fns"
 
 export async function getPaginatedArticles(currentPage: number) {

@@ -132,7 +132,7 @@ export async function getUserAndCreateIfHeNotExist() {
   return await prisma.user.create({
     data: {
         id: clerkUser.id,
-        name: `${clerkUser.username} ${clerkUser.firstName} ${clerkUser.lastName}`,
+        name: `${clerkUser.firstName} ${clerkUser.lastName}`,
         image: clerkUser.imageUrl,
     },
     include: {
