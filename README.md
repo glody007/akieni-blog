@@ -4,6 +4,11 @@ This is a blog built with everything new in Next.js 14.
 
 [![Akienist](./public/images/screenshot.png)](https://akieni-blog.vercel.app/)
 
+## PageSpeed Insights
+
+Lighthouse APIs to fetch and display Core Web Vitals and PageSpeed Insights results.
+
+[![PageSpeed](./public/images/seo.png)]
 
 ## Tech Stack
 
