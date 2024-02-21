@@ -95,3 +95,41 @@ Follow the deployment guides for [Vercel](https://vercel.com/new?utm_medium=defa
 
 - To enable a user access to the dashboard his author's flag must be true in the user table
 - There must be at least 6 articles with images to show the featured section
+
+## Project Structure
+
+```
+   ├── app/ 
+   |   ├── api/....   
+   |   |   ├── route.ts
+   |   ├── layout.tsx(RootLayout)                
+   |   ├── (blog)
+   |   |   ├── loading.tsx    
+   |   |   ...
+   ├── lib/                    
+   |   ├── utils.tsx
+   |   |   ...
+   ├── components/                    
+   |   ├── blog/ 
+   |   |   ├── header.tsx
+   |   |   ├── footer.tsx 
+   |   |   |   ...
+   ├── config/ 
+   |   ├── dashboard.ts
+   |   ├── site.ts
+   |   |   ...
+   ├── server/ 
+   |   ├── action.ts
+   |   |   ...
+   ├── data/ 
+   |   ├── get-articles.ts
+   |   |   ...
+   ├── prisma/ 
+   |   ├── schema.prisma
+   |   ├── seed.ts
+   |   |   ...
+   ├── tests/ 
+   |   ├── e2e
+   |   |   ├── article.spec.ts
+   |   |   |   ...
+```
