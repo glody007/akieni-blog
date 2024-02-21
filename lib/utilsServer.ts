@@ -42,9 +42,28 @@ export async function getFeaturedArticles() {
 }
 
 export async function getRelatedArticles(articleId: string) {
-    const allArticles = await getArticles()
-    if(allArticles.length < 11) return []
-    return allArticles.slice(7, 10)
+    const user = await prisma.article.findFirst({
+        where: {
+            id: articleId
+        },
+        include: {
+            authors: {
+                include: {
+                    articles: true
+                }
+            }
+        }
+    })
+
+    if(user) {
+        const author = user.authors[0]
+        if(author.articles.length > 3) return author.articles.slice(undefined, 3)
+        return author.articles
+    }
+    
+    return await prisma.article.findMany({
+        take: 3
+    })
 }
 
 export async function getArticle(id: string) {
@@ -100,6 +119,7 @@ export async function getArticleInteractions(articleId: string) {
     }
 }
 
+// TO DO: Optimize query
 export async function getArticlesPages(query: string) {
     const allArticles = await getArticles()
     const filteredArticles =  allArticles.filter(
@@ -108,6 +128,7 @@ export async function getArticlesPages(query: string) {
     return Math.ceil(filteredArticles.length / requestConfig.pageSize)
 }
 
+// TO DO: Optimize query
 export async function getFilteredArticles(query: string, currentPage: number) {
     const allArticles = await getArticles()
     const filteredArticles =  allArticles.filter(
