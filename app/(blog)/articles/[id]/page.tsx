@@ -1,5 +1,6 @@
 import { ArticleActions } from "@/components/blog/article-actions";
 import { ArticleAuthorList } from "@/components/blog/article-author-list";
+import { ArticleBody } from "@/components/blog/article-body";
 import { ArticleDetailsHeader } from "@/components/blog/article-details-header";
 import { RelatedArticleList } from "@/components/blog/related-article-list";
 import { Icons } from "@/components/icons";
@@ -41,7 +42,7 @@ export default async function ArticlePage({ params }: Props) {
                 </div>
                 <div className="flex flex-col gap-16 lg:gap-0 lg:grid lg:grid-cols-[1fr_280px] lg:min-h-screen lg:divide-x">
                     <div className="lg:pr-8" data-testid="body">
-                        {article.body}
+                        <ArticleBody article={article} />
                     </div>
                     <div className="flex flex-col gap-8 lg:pl-4">
                         <div className="flex flex-col gap-4">
