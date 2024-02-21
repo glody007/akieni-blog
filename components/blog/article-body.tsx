@@ -67,7 +67,7 @@ export function ArticleBody({ article }: ArticleBodyProps) {
     }, [isMounted, initializeEditor])
 
     return (
-        <div>
+        <div className="border rounded">
             <div className="mx-auto w-full flex flex-col gap-16 max-w-5xl p-4">
                 <div id="editor" className="min-h-[500px]" />
             </div>
