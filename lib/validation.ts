@@ -27,6 +27,7 @@ export const authorSchema = z.object({
 export const articleSchema = z.object({
     id: z.string(),
     title: z.string(),
+    image: z.string().nullable(),
     description: z.string(),
     body: z.string(),
     category: z.string(),

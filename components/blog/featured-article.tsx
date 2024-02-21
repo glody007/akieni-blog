@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { HTMLAttributes } from "react";
 import { AuthorBadgeList } from "../author-badge-list";
+import Image from "next/image";
 
 interface FeaturedArticleItemProps extends HTMLAttributes<HTMLElement> {
     article: Article
@@ -11,7 +12,14 @@ interface FeaturedArticleItemProps extends HTMLAttributes<HTMLElement> {
 
 export function FeaturedArticle({ article, className }: FeaturedArticleItemProps) {
     return (
-        <Link href={`/articles/${article.id}`} className={cn("flex flex-col gap-4 justify-end bg-black border rounded p-4", className)}>
+        <Link href={`/articles/${article.id}`} className={cn("relative flex flex-col gap-4 justify-end bg-gradient-to-t from-foreground/100 to-foreground/70 hover:to-foreground/30 border rounded p-4", className)}>
+            {article.image && (
+                <div className="absolute inset-0">
+                    <div className="relative h-full w-full -z-50">
+                        <Image fill src={article.image} alt={article.title} />
+                    </div>
+                </div>
+            )}
             <h1 className="text-white text-lg font-semibold">{article.title}</h1>
             <div className="flex justify-between items-center">
                 <div className="w-[70%] flex gap-2">
