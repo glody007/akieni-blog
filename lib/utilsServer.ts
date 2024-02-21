@@ -1,7 +1,7 @@
 import { requestConfig } from "@/config/request";
 import { Article, Comment, Like } from "@/lib/validation";
 import prisma from "./prisma";
-import { auth, currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
 
 export async function getAuthors() {
     return await prisma.user.findMany({
@@ -36,7 +36,10 @@ export async function getFeaturedArticles() {
                 image: null
             }
         },
-        take: 5
+        take: 5,
+        include: {
+            authors: true
+        }
     })
     return featured
 }
@@ -49,7 +52,11 @@ export async function getRelatedArticles(articleId: string) {
         include: {
             authors: {
                 include: {
-                    articles: true
+                    articles: {
+                        include: {
+                            authors: true
+                        }
+                    }
                 }
             }
         }
@@ -62,7 +69,10 @@ export async function getRelatedArticles(articleId: string) {
     }
     
     return await prisma.article.findMany({
-        take: 3
+        take: 3,
+        include: {
+            authors: true
+        }
     })
 }
 

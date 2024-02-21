@@ -60,29 +60,27 @@ This is a blog built with everything new in Next.js 14.
    cp .env.example .env
    ```
 
-4. Start the development server
-
-   ```bash
-   pnpm run dev
-   ```
-
-5. Push the database schema
+4. Push the database schema
 
    ```bash
    npx prisma db push
    ```
 
-6. Manage your database data(add, remove, update) with prisma studio
+5. Seed the db
 
    ```bash
-   npx prisma studio
+   npx prisma db seed
+   ``` 
+   
+6. Start the development server
+
+   ```bash
+   pnpm run dev
    ```
 
 ## How do I test?
 
-1. Populate your db
-
-2. Run the end to end testing
+1. Run the end to end testing
 
    ```bash
    pnpm exec playwright test

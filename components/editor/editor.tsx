@@ -47,8 +47,8 @@ export function Editor({ article }: EditorProps) {
         // @ts-ignore
         const LinkTool = (await import("@editorjs/link")).default
 
-    
         if (!editorRef.current) {  
+          const data = JSON.parse(article.body)
           const editor = new EditorJS({
             holder: "editor",
             onReady() {
@@ -56,7 +56,7 @@ export function Editor({ article }: EditorProps) {
             },
             placeholder: "Write your article...",
             inlineToolbar: true,
-            data: bodySchema.parse(article.body),
+            data: data,
             tools: {
               header: Header,
               linkTool: LinkTool,
@@ -92,7 +92,6 @@ export function Editor({ article }: EditorProps) {
             articleId: article.id, 
             body: data 
         })
-        console.log(JSON.stringify(data))
     }
 
     return (
