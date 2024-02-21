@@ -6,6 +6,7 @@ import { TimeSpent } from "@/components/dashboard/time-spent";
 import { Suspense } from "react";
 import { AuthorList } from "@/components/dashboard/author-list";
 import { getMetrics } from "@/lib/utilsServer";
+import { DetailSkeleton } from "@/components/skeletons";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -69,7 +70,7 @@ export default async function DashboardPage() {
               <CardDescription>Authors details</CardDescription>
             </CardHeader>
             <CardContent>
-              <Suspense fallback={(<div>Loading...</div>)}>
+              <Suspense fallback={(<DetailSkeleton />)}>
                 <AuthorList />
               </Suspense>
             </CardContent>
