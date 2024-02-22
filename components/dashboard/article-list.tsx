@@ -1,5 +1,5 @@
 import { Article } from "./article"
-import { getArticles, getFilteredArticles } from "@/lib/utilsServer"
+import { getFilteredArticles } from "@/lib/utilsServer"
 
 export async function ArticleList({
     query,

@@ -3,7 +3,7 @@
 import { requestConfig } from "@/config/request"
 import prisma from "@/lib/prisma"
 import { action } from "@/lib/safe-action"
-import { getArticle, getArticleInteractions, getArticles, getArticlesPages, getUserAndCreateIfHeNotExist } from "@/lib/utilsServer"
+import { getArticle, getArticleInteractions, getArticles, getArticlesPages, getFilteredArticles, getUserAndCreateIfHeNotExist } from "@/lib/utilsServer"
 import { articleBodyUpdateSchema, articleGenerateContentSchema, articleImageUpdateSchema, articlePostCommentSchema, articlePostLikeSchema, articleTitleUpdateSchema, emailPostSchema } from "@/lib/validation"
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
@@ -44,6 +44,12 @@ export async function getArticleComments(articleId: string) {
     const interactions =  await getArticleInteractions(articleId)
     return interactions.comments
 } 
+
+export async function getSearchedArticles(query: string) {
+    const results = await getFilteredArticles(query, 1)
+    if(results.length > 4) return results.slice(undefined, 3)
+    return results
+}
 
 export const subscribe = action(emailPostSchema, async ({ email }) => {
     try {
