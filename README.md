@@ -41,7 +41,7 @@ Lighthouse APIs to fetch and display Core Web Vitals and PageSpeed Insights resu
 - [x] ORM using **Prisma ORM**
 - [x] Database on **Railway**
 - [x] Newsletter subscription with **React Email** and **Resend**
-- [ ] Optimistic update to post comment **Next safe action**
+- [x] Optimistic update to post comment **Next safe action**
 - [x] Image uploads with **Uploadthing**
 - [ ] Retrial augmented generation(RAG) to enable chat with the article using  **Vercel ai**
 - [ ] Post generation using LLM

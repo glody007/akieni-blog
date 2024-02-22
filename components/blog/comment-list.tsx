@@ -10,6 +10,7 @@ import { useOptimisticAction } from "next-safe-action/hooks"
 import { postComment } from "@/server/actions"
 import { useUser } from "@clerk/nextjs"
 import { useToast } from "../ui/use-toast"
+import { useQueryClient } from "@tanstack/react-query"
 
 interface ArticleIdProps {
     articleId: string
@@ -42,6 +43,7 @@ interface OptimisticCommentsSectionProps {
 
 export function OptimisticCommentsSection({ comments, articleId, name, image }: OptimisticCommentsSectionProps) {
     const { toast } = useToast()
+    const queryClient = useQueryClient()
     const { execute, result, optimisticData, status } = useOptimisticAction(
         postComment,
         { comments },
@@ -49,16 +51,7 @@ export function OptimisticCommentsSection({ comments, articleId, name, image }: 
             const comments = state.comments
             if(comments) {
                 return Object.freeze({ 
-                     comments: [
-                        ...comments,
-                        {
-                            articleId,
-                            name,
-                            image,
-                            body,
-                            createdAt: new Date()
-                        }
-                    ],
+                    comments: [...comments],
                 })
             }
             return { error: true }
@@ -74,6 +67,7 @@ export function OptimisticCommentsSection({ comments, articleId, name, image }: 
                     description: "Something went wrong.",
                     variant: "destructive"
                 })
+                queryClient.invalidateQueries({ queryKey: ['comments'] })
             }
         }
     );
@@ -86,7 +80,18 @@ export function OptimisticCommentsSection({ comments, articleId, name, image }: 
         <div className="flex flex-col gap-4 pt-4">
             <AddCommentFormWithLogin 
                 articleId={articleId}  
-                handleExecute={execute}
+                handleExecute={(values) => {
+                    queryClient.setQueryData(
+                        ['comments'], 
+                        (old: Comment[]) => [{
+                            articleId,
+                            name,
+                            image,
+                            body: values.body,
+                            createdAt: new Date()
+                        }, ...old ])
+                    execute(values)
+                }}
                 isLoading={isLoading}
             />
             <CommentList comments={optimisticComments || []} />

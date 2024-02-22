@@ -96,6 +96,9 @@ export async function getArticleInteractions(articleId: string) {
         },
         include: {
             author: true
+        },
+        orderBy: {
+            createdAt: "desc"
         }
     })
 
@@ -105,6 +108,9 @@ export async function getArticleInteractions(articleId: string) {
         },
         include: {
             author: true
+        },
+        orderBy: {
+            createdAt: "desc"
         }
     })
     
