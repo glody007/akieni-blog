@@ -140,6 +140,7 @@ export async function getArticleInteractions(articleId: string) {
         comment => comment.postId.toString() === articleId
     ).map(comment => ({
         name: comment.name,
+        userId: '1',
         image: "https://avatars.githubusercontent.com/u/25279896?v=4",
         articleId: comment.postId.toString(),
         createdAt: new Date()
