@@ -6,7 +6,7 @@ interface Props {
     articleId: string
 }
 
-export function AiButton({ articleId }: Props) {
+export function AiChatButton({ articleId }: Props) {
     return (
         <Dialog>
             <DialogTrigger>

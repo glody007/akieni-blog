@@ -65,6 +65,10 @@ export const articleTitleUpdateSchema = z.object({
     title: z.string()
 })
 
+export const articleGenerateContentSchema = z.object({
+    articleId: z.string(),
+})
+
 export const articleImageUpdateSchema = z.object({
     articleId: z.string(),
     imageUrl: z.string()

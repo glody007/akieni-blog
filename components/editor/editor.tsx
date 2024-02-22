@@ -2,12 +2,13 @@
 
 import React from "react"
 import EditorJS from "@editorjs/editorjs"
-import { Article, bodySchema } from "@/lib/validation"
+import { Article } from "@/lib/validation"
 import { EditorHeader } from "./header"
 import { useToast } from "@/components/ui/use-toast"
 import { useAction } from "next-safe-action/hooks"
 import { updateArticleBody } from "@/server/actions"
 import { ImageUpload } from "./image-upload"
+import { AiGenerationButton } from "./ai-generation-button"
 
 interface EditorProps {
     article: Article
@@ -103,6 +104,9 @@ export function Editor({ article }: EditorProps) {
             <div className="z-0 mx-auto w-full flex flex-col gap-16 max-w-5xl p-4">
                 <ImageUpload article={article} />
                 <div id="editor" className="min-h-[500px]" />
+            </div>
+            <div className="sticky flex justify-end bottom-8 pr-8">
+                <AiGenerationButton articleId={article.id} />
             </div>
         </div>
     )

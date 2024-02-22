@@ -3,11 +3,17 @@
 import { requestConfig } from "@/config/request"
 import prisma from "@/lib/prisma"
 import { action } from "@/lib/safe-action"
-import { getArticleInteractions, getArticles, getArticlesPages, getUserAndCreateIfHeNotExist } from "@/lib/utilsServer"
-import { articleBodyUpdateSchema, articleImageUpdateSchema, articlePostCommentSchema, articlePostLikeSchema, articleTitleUpdateSchema, emailPostSchema } from "@/lib/validation"
+import { getArticle, getArticleInteractions, getArticles, getArticlesPages, getUserAndCreateIfHeNotExist } from "@/lib/utilsServer"
+import { articleBodyUpdateSchema, articleGenerateContentSchema, articleImageUpdateSchema, articlePostCommentSchema, articlePostLikeSchema, articleTitleUpdateSchema, emailPostSchema } from "@/lib/validation"
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
 import { format } from "date-fns"
+import OpenAI from 'openai'
+import { env } from "@/env"
+
+const openai = new OpenAI({
+  apiKey: env.OPENAI_API_KEY
+})
 
 export async function getPaginatedArticles(currentPage: number) {
     const allArticles = await getArticles()
@@ -99,6 +105,72 @@ export const updateArticleBody = action(articleBodyUpdateSchema, async ({ articl
             },
             data: {
                 body: JSON.stringify(body)
+            }
+        })
+        revalidatePath('/articles')
+        revalidatePath(`/articles/${articleId}`)
+        revalidatePath('/dashboard/articles')
+        revalidatePath(`/editor/${articleId}`)
+        return {
+            success: true
+        }
+    } catch {
+        return {
+            error: true
+        }
+    }
+})
+
+export const generateArticleBody = action(articleGenerateContentSchema, async ({ articleId }) => {
+    const article = await getArticle(articleId)
+
+    if(!article) return {
+        error: true
+    }
+
+    const context =  `
+        title: ${article.title}, 
+    `
+    const prompt: any = [
+        {
+            role: 'system',
+            content: `AI assistant that generates article body from its title
+                START CONTEXT BLOCK
+                ${context}
+                END OF CONTEXT BLOCK
+            `,
+        },
+        {
+            role: 'user',
+            content: 'Generate',
+        }
+    ]
+
+
+    const res = await openai.chat.completions.create({
+        model: 'gpt-3.5-turbo',
+        messages: [...prompt,        ],
+        temperature: 0.7,
+    })
+
+    const messages = res.choices.map(choice => choice.message).map(message => message.content)
+    const generatedContent = messages.join("")
+
+    try {
+        await prisma.article.update({
+            where: {
+                id: articleId
+            },
+            data: {
+                body: JSON.stringify({
+                    "time":1708430429202,
+                    "blocks":[{
+                        "id":"9H3PxLZJNY",
+                        "type":"paragraph",
+                        "data":{ "text": generatedContent }
+                    }],
+                    "version":"2.29.0"
+                })
             }
         })
         revalidatePath('/articles')

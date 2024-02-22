@@ -1,9 +1,10 @@
+import { env } from '@/env'
 import { getArticle } from '@/lib/utilsServer'
 import { OpenAIStream, StreamingTextResponse, Message } from 'ai'
 import OpenAI from 'openai'
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: env.OPENAI_API_KEY
 })
 
 
