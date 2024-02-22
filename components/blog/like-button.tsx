@@ -27,6 +27,7 @@ export function LikeButton({ articleId }: Props) {
         onSuccess: (data) => {
             toast({
                 description: data.message,
+                duration: 2000
             })
         },
         onError: () => {

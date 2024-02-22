@@ -60,12 +60,13 @@ export function OptimisticCommentsSection({ comments, articleId, name, image }: 
             onSuccess: () => {
                 toast({
                     description: "Your comment has been posted.",
+                    duration: 2000
                 })
             },
             onError: () => {
                 toast({
                     description: "Something went wrong.",
-                    variant: "destructive"
+                    variant: "destructive",
                 })
                 queryClient.invalidateQueries({ queryKey: ['comments'] })
             }
