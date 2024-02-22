@@ -46,7 +46,7 @@ Lighthouse APIs to fetch and display Core Web Vitals and PageSpeed Insights resu
 - [x] Optimistic update to post comment **Next safe action**
 - [x] Image uploads with **Uploadthing**
 - [x] Retrial augmented generation(RAG) to enable chat with the article using  **Vercel ai**
-- [ ] Post generation using LLM
+- [] Post generation using LLM
 - [x] Opengraph-image
   
 ## Running Locally
