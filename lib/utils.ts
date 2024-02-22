@@ -7,5 +7,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function generateAfterAuthRedirectionLink(link: string) {
-  return `${env.NEXT_PUBLIC_SIGN_IN_PAGE}?redirect_url=${env.NEXT_PUBLIC_APP_URL}`
+  return `${env.NEXT_PUBLIC_SIGN_IN_PAGE}?redirect_url=${link}`
 }
