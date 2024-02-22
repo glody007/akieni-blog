@@ -25,6 +25,8 @@ Lighthouse APIs to fetch and display Core Web Vitals and PageSpeed Insights resu
 - **Typesafe server actions** [Next safe action](https://next-safe-action.dev/)
 - **Env variables validation** [T3 Env](https://env.t3.gg/docs/introduction)
 - **Test** [Playwright](https://playwright.dev/)
+- **AI capability** [Vercel AI](https://sdk.vercel.ai/docs)
+- **LLM** [Vercel AI](https://platform.openai.com/)
 
 ## Features to be implemented
 
@@ -43,7 +45,7 @@ Lighthouse APIs to fetch and display Core Web Vitals and PageSpeed Insights resu
 - [x] Newsletter subscription with **React Email** and **Resend**
 - [x] Optimistic update to post comment **Next safe action**
 - [x] Image uploads with **Uploadthing**
-- [ ] Retrial augmented generation(RAG) to enable chat with the article using  **Vercel ai**
+- [x] Retrial augmented generation(RAG) to enable chat with the article using  **Vercel ai**
 - [ ] Post generation using LLM
 - [x] Opengraph-image
   
