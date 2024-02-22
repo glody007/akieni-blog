@@ -10,6 +10,9 @@ import { z } from "zod"
 import { format } from "date-fns"
 import OpenAI from 'openai'
 import { env } from "@/env"
+import { CourierClient } from "@trycourier/courier";
+
+const courier = new CourierClient({ authorizationToken: env.COURIER_API_KEY });
 
 const openai = new OpenAI({
   apiKey: env.OPENAI_API_KEY
@@ -49,7 +52,18 @@ export const subscribe = action(emailPostSchema, async ({ email }) => {
                 email
             }
         })
+        
         revalidatePath('/dashboard/newsletter')
+
+        const { requestId } = await courier.send({
+            message: {
+              to: {
+                email: email,
+              },
+              template: "M3G3EH9N7M47CFJSX8DC1N1GYYAW",
+            },
+        });
+
         return {
             success: true
         }

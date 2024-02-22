@@ -6,6 +6,7 @@ export const env = createEnv({
     DATABASE_URL: z.string(),
     CLERK_SECRET_KEY: z.string().min(1),
     OPENAI_API_KEY: z.string().min(1),
+    COURIER_API_KEY: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().min(1),
@@ -19,5 +20,6 @@ export const env = createEnv({
     NEXT_PUBLIC_SIGN_IN_PAGE: process.env.NEXT_PUBLIC_SIGN_IN_PAGE,
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    COURIER_API_KEY: process.env.COURIER_API_KEY,
   },
 });
