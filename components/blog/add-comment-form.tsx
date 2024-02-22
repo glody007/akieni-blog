@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import {
@@ -9,13 +7,10 @@ import {
   FormItem,
 } from "@/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAction } from "next-safe-action/hooks";
 import { articlePostCommentSchema } from "@/lib/validation";
 import { z } from "zod";
 import { Button } from "../ui/button";
-import { postComment, } from "@/server/actions";
 import { Icons } from "../icons";
-import { useToast } from "../ui/use-toast";
 import TextareaAutosize from "react-textarea-autosize";
 import { useAuth } from "@clerk/nextjs";
 import { generateAfterAuthRedirectionLink } from "@/lib/utils";
@@ -25,11 +20,11 @@ type Form = z.infer<typeof articlePostCommentSchema>
 
 interface Props {
   articleId: string
+  handleExecute: (values: Form) => void
+  isLoading: boolean
 }
 
-export function AddCommentForm({ articleId }: Props) {
-  const { toast } = useToast()
-
+export function AddCommentForm({ articleId, handleExecute, isLoading }: Props) {
   const form = useForm<Form>({
     resolver: zodResolver(articlePostCommentSchema),
     defaultValues: {
@@ -38,26 +33,12 @@ export function AddCommentForm({ articleId }: Props) {
     },
   })
 
-  const { execute, status } = useAction(postComment, {
-    onSuccess: () => {
-        toast({
-            description: "Your comment has been posted.",
-        })
-        form.reset()
-    },
-    onError: () => {
-        toast({
-            description: "Something went wrong.",
-            variant: "destructive"
-        })
-    }
-  })
-
-  const isLoading = status === "executing"
+  
   const isValid = form.watch("body").length > 0
 
   function onSubmit(values: Form) {
-    execute(values)
+    handleExecute(values)
+    form.reset()
   }
 
   return (
@@ -95,7 +76,7 @@ export function AddCommentForm({ articleId }: Props) {
   );
 };
 
-export function AddCommentFormButton({ articleId }: Props) {
+export function AddCommentFormButton({ articleId }: { articleId: string }) {
   const router = useRouter()
 
   const signIn = () => {
@@ -115,14 +96,18 @@ export function AddCommentFormButton({ articleId }: Props) {
   )
 }
 
-export function AddCommentFormWithLogin({ articleId }: Props) {
+export function AddCommentFormWithLogin({ articleId, handleExecute, isLoading }: Props) {
   const { isSignedIn } = useAuth()
 
   return (
     <>
       {isSignedIn ? (
         <div className="border p-4 shadow-lg">
-          <AddCommentForm articleId={articleId} />
+          <AddCommentForm 
+            articleId={articleId} 
+            handleExecute={handleExecute} 
+            isLoading={isLoading}
+          />
         </div>
       ) : (
         <AddCommentFormButton articleId={articleId} />

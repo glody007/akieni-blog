@@ -11,8 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { CommentList } from "./comment-list"
-import { AddCommentFormWithLogin } from "./add-comment-form"
+import { CommentsSections } from "./comment-list"
 
 interface CommentProps {
   articleId: string
@@ -20,7 +19,6 @@ interface CommentProps {
 }
 
 export function Comment({ articleId, children }: CommentProps) {
-  
   return (
     <Sheet>
         <TooltipProvider>
@@ -41,10 +39,7 @@ export function Comment({ articleId, children }: CommentProps) {
         <SheetHeader>
           <SheetTitle>Responses</SheetTitle>
         </SheetHeader>
-        <div className="flex flex-col gap-4 pt-4">
-          <AddCommentFormWithLogin articleId={articleId} />
-          <CommentList articleId={articleId} />
-        </div>
+        <CommentsSections articleId={articleId} />
       </SheetContent>
     </Sheet>
   )

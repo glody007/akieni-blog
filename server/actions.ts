@@ -175,7 +175,7 @@ export const postComment = action(articlePostCommentSchema, async ({ articleId, 
         })
         revalidatePath(`/articles/${articleId}`)
         return {
-            success: true
+            comments: await getArticleComments(articleId)
         }
     } else {
         return {
