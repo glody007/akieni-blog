@@ -89,7 +89,13 @@ Lighthouse APIs to fetch and display Core Web Vitals and PageSpeed Insights resu
 
 ## How do I test?
 
-1. Run the end to end testing
+1. Start the development server
+
+   ```bash
+   pnpm run dev
+   ```
+
+2. Run the end to end testing
 
    ```bash
    pnpm exec playwright test
