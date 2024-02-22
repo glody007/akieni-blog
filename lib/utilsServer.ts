@@ -21,6 +21,14 @@ export async function getArticles() {
     return articles
 }
 
+export async function getNewsletterSubscriptions() {
+    return await prisma.subscription.findMany({
+        orderBy: {
+            createdAt: "desc"
+        }
+    })
+}
+
 export async function getFeaturedArticles() {
     const count = await prisma.article.count({
         where: {

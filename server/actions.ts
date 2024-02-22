@@ -52,8 +52,6 @@ export const subscribe = action(emailPostSchema, async ({ email }) => {
                 email
             }
         })
-        
-        revalidatePath('/dashboard/newsletter')
 
         const { requestId } = await courier.send({
             message: {
@@ -63,6 +61,8 @@ export const subscribe = action(emailPostSchema, async ({ email }) => {
               template: "M3G3EH9N7M47CFJSX8DC1N1GYYAW",
             },
         });
+
+        revalidatePath('/dashboard/newsletter')
 
         return {
             success: true

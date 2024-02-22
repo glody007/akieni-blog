@@ -12,5 +12,10 @@ export const dashboardConfig: DashboardConfig = {
             href: "/dashboard/articles",
             icon: "fileText"
         },
+        {
+            name: "Newsletter",
+            href: "/dashboard/newsletter",
+            icon: "mail"
+        }
     ]
 }

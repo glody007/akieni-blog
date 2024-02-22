@@ -35,6 +35,7 @@ export function SubscribeForm() {
         if(data.success) {
           toast({
             description: "Your subscription has been registered.",
+            duration: 2000
           })
         } else {
           toast({
