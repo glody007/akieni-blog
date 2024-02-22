@@ -124,6 +124,7 @@ export async function getArticleInteractions(articleId: string) {
     
     const likes: Like[] = likesRaw.map(like => ({
         name: like.author.name,
+        userId: like.author.id,
         image: like.author.image,
         articleId: like.articleId,
         createdAt: like.createdAt

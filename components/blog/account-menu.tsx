@@ -27,7 +27,7 @@ export function AccountMenu() {
     const router = useRouter()
 
     const signIn = () => {
-      router.push("dashboard")
+      router.push("/dashboard")
     }
 
     if(!isLoaded) return <Skeleton className="w-8 h-8 rounded-full" />
