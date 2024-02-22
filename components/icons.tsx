@@ -23,6 +23,7 @@ import {
     Search,
     Pencil,
     Image,
+    Sparkles,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -50,5 +51,6 @@ export const Icons = {
     save: Save,
     search: Search,
     update: Pencil,
-    picture: Image
+    picture: Image,
+    ai: Sparkles
 }

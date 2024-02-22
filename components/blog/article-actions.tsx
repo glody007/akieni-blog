@@ -3,6 +3,7 @@ import { Icons } from "../icons"
 import { LikeList } from "./like-list"
 import { Comment } from "./comment"
 import { LikeButton } from "./like-button"
+import { AiButton } from "./ai-button"
 
 interface Props {
     id: string
@@ -31,6 +32,7 @@ export async function ArticleActions({ id }: Props) {
                     <p>{interactions.comments.length}</p>
                 </div>
             </Comment>
+            <AiButton articleId={id} />
         </div>
     )
 }
