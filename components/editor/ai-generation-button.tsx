@@ -48,7 +48,7 @@ export function AiGenerationButton({ articleId }: Props) {
             <div className="space-y-2">
                 <h4 className="font-medium leading-none">Generate content</h4>
                 <p className="text-sm text-muted-foreground">
-                    Akienist will use the article's title to generate the body.
+                    Akienist will use the article&apos;s title to generate the body.
                 </p>
             </div>
             <div className="grid gap-2">
