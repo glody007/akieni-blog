@@ -3,8 +3,11 @@ import { FeaturedArticleList } from "@/components/blog/featured-article-list";
 import { getFeaturedArticles } from "@/lib/utilsServer";
 import { getPaginatedArticles } from "@/server/actions";
 import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
+import { unstable_noStore as noStore } from 'next/cache';
 
 export default async function Blog() {
+  noStore();
+  
   const queryClient = new QueryClient()
 
   const featuredArticles = await getFeaturedArticles()
