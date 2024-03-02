@@ -6,6 +6,6 @@ export function useGetArticles() {
         queryFn: async ({ pageParam }) => getPaginatedArticles(pageParam),
         queryKey: ["articles"],
         initialPageParam: 1,
-        getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
+        getNextPageParam: (lastPage, pages) => lastPage ? lastPage.nextCursor : 2,
     })
 }
